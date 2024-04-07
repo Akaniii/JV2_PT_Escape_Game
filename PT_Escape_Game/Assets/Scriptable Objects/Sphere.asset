@@ -13,5 +13,6 @@ MonoBehaviour:
   m_Name: Sphere
   m_EditorClassIdentifier: 
   nameElement: Sphere
+  actionElement: Pick
   meshElement: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
   materialElement: {fileID: 2100000, guid: e6b9b44320f4448d9d5e0ee634259966, type: 2}

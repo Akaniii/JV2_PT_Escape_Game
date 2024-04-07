@@ -4,28 +4,32 @@ using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
 
-public class InteractiveElement : MonoBehaviour
+public abstract class InteractiveElement : MonoBehaviour
 {
-    public InteractiveScriptable infosElement;
-
-    private string nameElement;
+    [SerializeField]
+    private string nameElement, action;
+    
+    [SerializeField]
     private MeshFilter meshFilter;
-    private MeshRenderer meshRenderer;
-
-    public GameObject interactiveElementPrefab;
 
     [SerializeField]
-    private bool isCarriedElement;
+    private MeshRenderer meshRenderer;
+
+    //public GameObject interactiveElementPrefab;
+
+    [SerializeField]
+    //private bool isCarriedElement;
 
     // Start is called before the first frame update
     void Start()
     {
-        if (!isCarriedElement)
-        {
-            gameObject.GetComponent<InteractiveElement>().SetName(infosElement.nameElement);
-            gameObject.GetComponent<MeshFilter>().mesh = infosElement.meshElement;
-            gameObject.GetComponent<MeshRenderer>().material = infosElement.materialElement;
-        }
+        //if (!isCarriedElement)
+        //{
+        //    gameObject.GetComponent<InteractiveElement>().SetAction(infosElement.actionElement);
+        //    gameObject.GetComponent<InteractiveElement>().SetName(infosElement.nameElement);
+        //    gameObject.GetComponent<MeshFilter>().mesh = infosElement.meshElement;
+        //    gameObject.GetComponent<MeshRenderer>().material = infosElement.materialElement;
+        //}
 
     }
 
@@ -40,9 +44,24 @@ public class InteractiveElement : MonoBehaviour
         return nameElement;
     }
 
+    public string GetAction()
+    {
+        return action;
+    }
+
     public void SetName(string newName)
     {
         nameElement = newName;
+    }
+
+    public void SetAction(string newAction)
+    {
+        action = newAction;
+    }
+
+    public virtual void Interact()
+    {
+
     }
 
     public void PickObject(InteractiveElement carriedObject)

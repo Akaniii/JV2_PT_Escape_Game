@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class InteractiveScriptable : ScriptableObject
 {
-    public string nameElement;
+    public string nameElement, actionElement;
     public Mesh meshElement;
     public Material materialElement;
 }

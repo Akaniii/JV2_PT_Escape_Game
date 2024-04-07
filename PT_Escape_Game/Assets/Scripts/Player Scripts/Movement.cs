@@ -4,31 +4,15 @@ using UnityEngine;
 
 public class Movement : MonoBehaviour
 {
-    public CharacterController characterController;
-
     [SerializeField]
-    private float speed, gravity;
+    private Transform groundCheck;
 
-    Vector3 velocityPlayer;
-
-    public Transform groundCheck;
-
-    public float GroundDistance = 0.4f;
     public LayerMask groundMask;
 
-    bool isGrounded;
-
-    private void Update()
+    public void PlayerMovements(CharacterController _characterController, Vector3 _velocity, float _speed, float _gravity)
     {
-        // create an invisible sphere that check if there is a collision. Return true if it is
-        isGrounded = Physics.CheckSphere(groundCheck.position, GroundDistance, groundMask);
-
-        // check if on ground and velocity is less than 0
-        if (isGrounded && velocityPlayer.y < 0)
-        {
-            // force the player on the ground (better than 0)
-            velocityPlayer.y = -2f;
-        }
+        // check if Player is on the Ground
+        CheckGround(_velocity);
 
         // track the keyboards and controller inputs for movements (Go to Project Settings to change them)
         float moveAxisX = Input.GetAxis("Horizontal");
@@ -38,12 +22,27 @@ public class Movement : MonoBehaviour
         Vector3 direction = transform.right * moveAxisX + transform.forward * moveAxisZ;
 
         // apply the movements
-        characterController.Move(direction * speed * Time.deltaTime);
+        _characterController.Move(direction * _speed * Time.deltaTime);
 
         // save the gravity on the velocity Y axis 
-        velocityPlayer.y += gravity * Time.deltaTime;
+        _velocity.y += _gravity * Time.deltaTime;
 
         // apply the gravity in movements
-        characterController.Move(velocityPlayer * Time.deltaTime);
+        _characterController.Move(_velocity * Time.deltaTime);
+    }
+
+    public void CheckGround(Vector3 _velocity)
+    {
+        float groundDistance = 0.4f;
+
+        // create an invisible sphere that check if there is a collision. Return true if it is
+        bool isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
+
+        // check if on ground and velocity is less than 0
+        if (isGrounded && _velocity.y < 0)
+        {
+            // force the player on the ground (better than 0)
+            _velocity.y = -2f;
+        }
     }
 }
