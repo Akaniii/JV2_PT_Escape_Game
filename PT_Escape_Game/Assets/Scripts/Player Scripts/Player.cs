@@ -89,10 +89,6 @@ public class Player : MonoBehaviour
     {
         return carriedElement;
     }
-    public void SetCarriedElement(GameObject objectPicked)
-    {
-        carriedElement = objectPicked;
-    }
 
     public void DropCarriedElement()
     {

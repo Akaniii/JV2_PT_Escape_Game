@@ -493,7 +493,7 @@ MonoBehaviour:
   characterController: {fileID: 293302653}
   speed: 5
   gravity: -2
-  mouseSensitivity: 100
+  mouseSensitivity: 500
   mainCamera: {fileID: 1771038068}
   carriedElement: {fileID: 1178984378}
   interactiveElementsLayer: {fileID: 1013029752}
