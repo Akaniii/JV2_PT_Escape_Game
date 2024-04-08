@@ -22,7 +22,7 @@ public class Player : MonoBehaviour
     private Camera mainCamera;
 
     [SerializeField]
-    private GameObject carriedElement, interactiveElementsLayer;
+    private GameObject handPosition, carriedElement, interactiveElementsLayer;
 
     public LayerMask maskInteractive;
 
@@ -45,7 +45,7 @@ public class Player : MonoBehaviour
 
         PlayerInteractions();
 
-        //Debug.DrawLine(mainCamera.transform.position, mainCamera.transform.forward * 10, Color.blue);
+        Debug.DrawLine(mainCamera.transform.position, mainCamera.transform.forward * 10, Color.blue);
     }
 
     private void PlayerInteractions()
@@ -57,14 +57,14 @@ public class Player : MonoBehaviour
             if (CheckInteractionsRaycast(hitInfo))
             {
                 // show input to interact
-                ManageUI(hitInfo, true);
+                ShowUIInteractionInput(hitInfo, true);
 
                 if ((hitInfo.collider.GetComponent<MovableElement>() != null && !holdSomething) || hitInfo.collider.GetComponent<MovableElement>() == null)
                 {
-                    if (Input.GetKey(KeyCode.E))
+                    if (Input.GetKey(KeyCode.F))
                     {
                         hitInfo.collider.GetComponent<InteractiveElement>().Interact();
-                        ManageUI(hitInfo, false);
+                        ShowUIInteractionInput(hitInfo, false);
                     }
                 }
                 else
@@ -77,17 +77,46 @@ public class Player : MonoBehaviour
             }
             else
             {
-                // hide input to interact
-                ManageUI(hitInfo, false);
+                // hide input to interact if collide with something not Interactible
+                ShowUIInteractionInput(hitInfo, false);
             }
+        }
+        else
+        {
+            // hide input to interact if no collide on raycast
+            ShowUIInteractionInput(hitInfo, false);
         }
 
         DropCarriedElement();
+
+        ShowUIDropElement();
+
+        RotateCarriedElement();
+    }
+
+    private void RotateCarriedElement ()
+    {
+        if(holdSomething)
+        {
+            if (Input.GetKey(KeyCode.Q))
+            {
+                carriedElement.transform.Rotate(0f, -1f, 0f);
+            }
+            else if (Input.GetKey(KeyCode.E))
+            {
+                carriedElement.transform.Rotate(0f, 1f, 0f);
+            }
+        }
     }
 
     public GameObject GetCarriedElement()
     {
-        return carriedElement;
+        return handPosition;
+    }
+
+    public void SetCarriedElement(GameObject _carriedElement)
+    {
+        carriedElement = _carriedElement; 
     }
 
     public void DropCarriedElement()
@@ -96,39 +125,22 @@ public class Player : MonoBehaviour
         {
             holdSomething = false;
 
-            GameObject savedCarriedElement = carriedElement;
-            savedCarriedElement.GetComponent<MovableElement>().SetCanBePicked(true);
-            savedCarriedElement.GetComponent<Rigidbody>().isKinematic = false;
+            carriedElement.GetComponent<MovableElement>().SetCanBePicked(true);
+            carriedElement.GetComponent<Rigidbody>().isKinematic = false;
+            carriedElement.GetComponent<Collider>().enabled = true;
+
+            carriedElement.transform.parent = null;
 
             carriedElement = null;
-
-            GameObject newElement = Instantiate(savedCarriedElement, carriedElement.transform.position, carriedElement.transform.rotation, interactiveElementsLayer.transform);
-
-            //carriedElement.DropObject(carriedElement, interactiveElementsLayer);
-
-            //newElement.GetComponent<InteractiveElement>().SetName(carriedElement.GetComponent<InteractiveElement>().GetName());
-            //newElement.GetComponent<MeshRenderer>().material = carriedElement.GetComponent<MeshRenderer>().material;
-            //newElement.GetComponent<MeshFilter>().mesh = carriedElement.GetComponent<MeshFilter>().mesh;
-
-            //carriedElement.SetName(null);
-            //carriedElement.GetComponent<MeshRenderer>().material = null;
-            //carriedElement.GetComponent<MeshFilter>().mesh = null;
-
-
-            //carriedElement.GetComponent<MeshRenderer>().material = null;
-            //carriedElement.GetComponent<MeshFilter>().mesh = null;
-
-
-            //Instantiate(interactiveElementPrefab, carriedElement.transform);
         }
     }
 
-        public void SetHoldSomething(bool newBool)
+    public void SetHoldSomething(bool newBool)
     {
         holdSomething = newBool;
     } 
 
-    public void ManageUI(RaycastHit _hitInfo, bool catchInteraction)
+    public void ShowUIInteractionInput(RaycastHit _hitInfo, bool catchInteraction)
     {
         // if raycast detect element movable can be picked OR interactiveElement (not movables)
         if (catchInteraction)
@@ -136,17 +148,20 @@ public class Player : MonoBehaviour
             // show text to let the player know what action he can make with the interactive element
             interactInputInfo.gameObject.SetActive(true);
 
-            interactInputInfo.text = "E - " + _hitInfo.collider.GetComponent<InteractiveElement>().GetAction() + " " + _hitInfo.collider.GetComponent<InteractiveElement>().GetName();
+            interactInputInfo.text = "F - " + _hitInfo.collider.GetComponent<InteractiveElement>().GetAction() + " " + _hitInfo.collider.GetComponent<InteractiveElement>().GetName();
         }
         else
         {
             interactInputInfo.gameObject.SetActive(false);
         }
+    }
 
+    private void ShowUIDropElement()
+    {
         if (holdSomething)
         {
             dropInputInfo.gameObject.SetActive(true);
-            dropInputInfo.text = "X - Drop " + _hitInfo.collider.GetComponent<InteractiveElement>().GetName();
+            dropInputInfo.text = "X - Drop " + carriedElement.GetComponent<InteractiveElement>().GetName();
         }
         else
         {

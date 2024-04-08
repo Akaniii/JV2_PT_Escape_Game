@@ -4,40 +4,11 @@ using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
 
+[RequireComponent (typeof (Collider))]
 public abstract class InteractiveElement : MonoBehaviour
 {
     [SerializeField]
     private string nameElement, action;
-    
-    [SerializeField]
-    private MeshFilter meshFilter;
-
-    [SerializeField]
-    private MeshRenderer meshRenderer;
-
-    //public GameObject interactiveElementPrefab;
-
-    [SerializeField]
-    //private bool isCarriedElement;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        //if (!isCarriedElement)
-        //{
-        //    gameObject.GetComponent<InteractiveElement>().SetAction(infosElement.actionElement);
-        //    gameObject.GetComponent<InteractiveElement>().SetName(infosElement.nameElement);
-        //    gameObject.GetComponent<MeshFilter>().mesh = infosElement.meshElement;
-        //    gameObject.GetComponent<MeshRenderer>().material = infosElement.materialElement;
-        //}
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
    
     public string GetName()
     {
@@ -61,16 +32,6 @@ public abstract class InteractiveElement : MonoBehaviour
 
     public virtual void Interact()
     {
-
-    }
-
-    public void PickObject(InteractiveElement carriedObject)
-    {
-        carriedObject.SetName(nameElement);
-        carriedObject.GetComponent<MeshRenderer>().material = gameObject.GetComponent<MeshRenderer>().material;
-        carriedObject.GetComponent<MeshFilter>().mesh = gameObject.GetComponent<MeshFilter>().mesh;
-
-        Destroy(gameObject);
 
     }
 }
