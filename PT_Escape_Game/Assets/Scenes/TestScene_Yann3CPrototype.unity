@@ -252,6 +252,10 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+    - target: {fileID: 3544855515624244528, guid: 263156fc4c4361743a95b1ff6b29e161, type: 3}
+      propertyPath: m_Drag
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 7228597533060947166, guid: 263156fc4c4361743a95b1ff6b29e161, type: 3}
       propertyPath: m_Enabled
       value: 1
