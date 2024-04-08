@@ -61,7 +61,7 @@ public class Player : MonoBehaviour
 
                 if ((hitInfo.collider.GetComponent<MovableElement>() != null && !holdSomething) || hitInfo.collider.GetComponent<MovableElement>() == null)
                 {
-                    if (Input.GetKey(KeyCode.F))
+                    if (Input.GetKeyDown(KeyCode.F))
                     {
                         hitInfo.collider.GetComponent<InteractiveElement>().Interact();
                         ShowUIInteractionInput(hitInfo, false);
