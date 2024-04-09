@@ -8,25 +8,6 @@ public class CameraControl : MonoBehaviour
 {
     private float xRotation = 0f;
 
-    //public InteractiveElement carriedElement;
-
-    //public GameObject interactiveElementPrefab, interactiveElementsLayer;
-
-    //public LayerMask maskInteractive;
-    //
-
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
     public void MoveCamera(float _mouseSensivity, Transform _playerBody)
     {
         // track the position of arrow axis through time, and multiply it by sensitivity

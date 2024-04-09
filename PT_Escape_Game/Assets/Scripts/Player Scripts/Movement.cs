@@ -31,7 +31,7 @@ public class Movement : MonoBehaviour
         _characterController.Move(_velocity * Time.deltaTime);
     }
 
-    public void CheckGround(Vector3 _velocity)
+    private void CheckGround(Vector3 _velocity)
     {
         float groundDistance = 0.4f;
 

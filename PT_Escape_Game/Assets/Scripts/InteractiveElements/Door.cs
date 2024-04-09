@@ -6,6 +6,9 @@ public class Door : StaticElement
 {
     private bool opened;
 
+    [SerializeField]
+    private Animator animatorDoor;
+
     public override void Interact()
     {
         // Animation : effectuer une rotation de la porte
@@ -16,6 +19,7 @@ public class Door : StaticElement
         else
         {
             opened = true;
+            animatorDoor.SetTrigger("InteractionOpen");
         }
     }
 }

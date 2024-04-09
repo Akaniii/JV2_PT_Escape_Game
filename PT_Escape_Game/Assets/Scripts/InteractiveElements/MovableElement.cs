@@ -12,15 +12,13 @@ public class MovableElement : InteractiveElement
         {
             canBePicked = false;
 
-            transform.parent = FindObjectOfType<Player>().GetCarriedElement().transform;
-            FindObjectOfType<Player>().SetCarriedElement(gameObject);
+            transform.parent = FindObjectOfType<Player>().interactionsScript.GetCarriedElement().transform;
+            FindObjectOfType<Player>().interactionsScript.SetCarriedElement(gameObject);
             transform.localPosition = Vector3.zero;
             transform.localEulerAngles = Vector3.zero; 
 
             gameObject.GetComponent<Rigidbody>().isKinematic = true;
             gameObject.GetComponent<Collider>().enabled = false;
-
-            FindObjectOfType<Player>().SetHoldSomething(true);
         }
     }
 
