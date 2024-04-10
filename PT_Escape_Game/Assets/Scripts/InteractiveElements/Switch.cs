@@ -9,22 +9,22 @@ public class Switch : StaticElement
 
     public override void Interact()
     {
-        if (linkedLight.enabled)
-        {
-            TurnOff();
-        }
-        else
+        if (!linkedLight.enabled)
         {
             TurnOn();
         }
+        else
+        {
+            TurnOff();
+        }
     }
 
-    public void TurnOn()
+    public virtual void TurnOn()
     {
         linkedLight.enabled = true;
         SetAction("Turn Off");
     }
-    public void TurnOff()
+    public virtual void TurnOff()
     {
         linkedLight.enabled = false;
         SetAction("Turn On");

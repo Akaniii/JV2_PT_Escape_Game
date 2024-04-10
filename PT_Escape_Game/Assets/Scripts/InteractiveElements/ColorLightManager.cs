@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ColorLightManager : MonoBehaviour
+public class ColorLightManager : Switch
 {
     [SerializeField]
     private SwitchColor[] lightOrder;
@@ -12,59 +12,65 @@ public class ColorLightManager : MonoBehaviour
 
     private int currentOrder;
 
-    [SerializeField]
-    private Switch triggerLight;
-
-    private void Start()
+    public override void Interact()
     {
-        ColorLightSystem();
-    }
-
-    /*public void LaunchColorLightSystem()
-    {
-        if (!triggerLight.GetLight().enabled)
+        if (!linkedLight.enabled)
         {
-            ColorLightSystem();
-        }
-    }*/
+            // turn on normal light
+            TurnOn();
 
-    public void ColorLightSystem()
-    {
-        StartCoroutine(AlternationLight());
+            if (currentOrder < 4)
+            {
+                // turn off all colored lights
+                DisableAllLights();
+            }
+        }
+        else
+        {
+            // turn off normal light
+            TurnOff();
+
+            // start alterned turn on of colored lights (must be named with string to stop it)
+            StartCoroutine("AlternationLight");
+        }
     }
 
     public IEnumerator AlternationLight()
     {
-        float timerLightSystem = 1.5f;
-        // loop the system
-        for (int t = 0; t < 8; t++)
+        while(!linkedLight.enabled)
         {
-            //enable light
-            for (int i = 0; i < switchLights.Length; i++)
+            yield return new WaitForSeconds(2);
+            float timerLightSystem = 1.5f;
+            // loop the system
+            for (int t = 0; t < 8; t++)
             {
-                yield return new WaitForSeconds(timerLightSystem);
-
-                // loop to disable all lights
-                for (int j = 0; j < switchLights.Length; j++)
+                //enable light
+                for (int i = 0; i < switchLights.Length; i++)
                 {
-                    // if light hasn't been fixed by player action
-                    if (!switchLights[j].GetColorLightFixed())
+                    yield return new WaitForSeconds(timerLightSystem);
+
+                    // loop to disable all lights
+                    for (int j = 0; j < switchLights.Length; j++)
                     {
-                        switchLights[j].TurnOff();
+                        // if light hasn't been fixed by player action
+                        if (!switchLights[j].GetColorLightFixed())
+                        {
+                            switchLights[j].TurnOff();
+                        }
                     }
+
+                    //enable one light
+                    switchLights[i].GetLinkedLight().enabled = true;
                 }
 
-                //enable one light
-                switchLights[i].TurnOn();
+                timerLightSystem -= .15f;
             }
 
-            timerLightSystem -= .15f;
+            DisableAllLights();
         }
-
-        DisableAllLights();
     }
 
-    public void CheckRightLight(SwitchColor switchPressed)
+    public bool CheckRightLight(SwitchColor switchPressed)
     {
         if (lightOrder[currentOrder] == switchPressed)
         {
@@ -75,30 +81,30 @@ public class ColorLightManager : MonoBehaviour
             {
                 // Fonction de victoire
             }
+
+            return true;
         }
         else
         {
             DisableAllLights();
-            currentOrder = 0;
+            return false;
         }
     }
 
     public void DisableAllLights()
     {
+        currentOrder = 0;
+        StopCoroutine("AlternationLight");
+
         // disable all lights
         for (int i = 0; i < switchLights.Length; i++)
         {
             switchLights[i].TurnOff();
         }
-    }
 
-    public SwitchColor[] GetLightOrder()
-    {
-        return lightOrder;
-    }
-
-    public SwitchColor[] GetSwitchLightsList()
-    {
-        return switchLights;
+        if (!linkedLight.enabled)
+        {
+            StartCoroutine("AlternationLight");
+        }
     }
 }

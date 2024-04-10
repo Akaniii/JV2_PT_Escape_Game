@@ -684,10 +684,14 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3563751316344128245, guid: c47663ef317c1ce4c97868b32ef9a02a, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1898310635609377388, guid: c47663ef317c1ce4c97868b32ef9a02a, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2078748814}
   m_SourcePrefab: {fileID: 100100000, guid: c47663ef317c1ce4c97868b32ef9a02a, type: 3}
 --- !u!1001 &160079343
 PrefabInstance:
@@ -1818,10 +1822,7 @@ PrefabInstance:
     - {fileID: 3563751316344128245, guid: c47663ef317c1ce4c97868b32ef9a02a, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 1898310635609377388, guid: c47663ef317c1ce4c97868b32ef9a02a, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1494434316}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c47663ef317c1ce4c97868b32ef9a02a, type: 3}
 --- !u!1001 &456820988
 PrefabInstance:
@@ -2929,7 +2930,7 @@ Light:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 757251800}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 10
   m_Type: 2
   m_Shape: 0
@@ -3085,7 +3086,7 @@ Light:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 796328471}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 10
   m_Type: 2
   m_Shape: 0
@@ -5200,7 +5201,7 @@ Light:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1654616935}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 10
   m_Type: 2
   m_Shape: 0
@@ -5676,61 +5677,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3981857249583475194, guid: eb9e28fe6275a4242b0921416f26b0f0, type: 3}
   m_PrefabInstance: {fileID: 1863274951}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1889718791
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1889718792}
-  - component: {fileID: 1889718793}
-  m_Layer: 0
-  m_Name: LevelManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1889718792
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1889718791}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -15.703232, y: -6.9378705, z: 2.5983639}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1889718793
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1889718791}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: af0b3488f4a961b4c8db7b5ff1bbf7b2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  lightOrder:
-  - {fileID: 1797827138}
-  - {fileID: 189591118}
-  - {fileID: 1504621929}
-  - {fileID: 422906192}
-  switchLights:
-  - {fileID: 1797827138}
-  - {fileID: 1504621929}
-  - {fileID: 189591118}
-  - {fileID: 422906192}
-  triggerLight: {fileID: 1942824211}
 --- !u!1001 &1896363097
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5940,17 +5886,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a251cc3c8b9e3f940a70c82956282821, type: 3}
---- !u!114 &1942824211 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3563751316344128245, guid: c47663ef317c1ce4c97868b32ef9a02a, type: 3}
-  m_PrefabInstance: {fileID: 157902019}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 92f16f7b7f744fc4ca5d8b0cc9a96776, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1970253927
 GameObject:
   m_ObjectHideFlags: 0
@@ -5975,7 +5910,7 @@ Light:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1970253927}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 10
   m_Type: 2
   m_Shape: 0
@@ -6315,6 +6250,37 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2078748809 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1898310635609377388, guid: c47663ef317c1ce4c97868b32ef9a02a, type: 3}
+  m_PrefabInstance: {fileID: 157902019}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2078748814
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2078748809}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: af0b3488f4a961b4c8db7b5ff1bbf7b2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nameElement: Switch
+  action: TurnOff
+  errorText: 
+  linkedLight: {fileID: 937592101}
+  lightOrder:
+  - {fileID: 1797827138}
+  - {fileID: 1504621929}
+  - {fileID: 189591118}
+  - {fileID: 422906192}
+  switchLights:
+  - {fileID: 1797827138}
+  - {fileID: 422906192}
+  - {fileID: 1504621929}
+  - {fileID: 189591118}
 --- !u!1001 &193266581215050122
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6435,7 +6401,6 @@ SceneRoots:
   - {fileID: 937592102}
   - {fileID: 757251802}
   - {fileID: 796328473}
-  - {fileID: 157902019}
   - {fileID: 445280706}
   - {fileID: 607432384}
   - {fileID: 419734222}
@@ -6445,11 +6410,11 @@ SceneRoots:
   - {fileID: 1045418222}
   - {fileID: 210402660}
   - {fileID: 1935177880}
-  - {fileID: 679736472}
+  - {fileID: 193266581215050122}
   - {fileID: 1616519847}
+  - {fileID: 157902019}
   - {fileID: 1650946841}
   - {fileID: 569592269}
   - {fileID: 1662371275}
   - {fileID: 220143254}
-  - {fileID: 1889718792}
   - {fileID: 1337636258}

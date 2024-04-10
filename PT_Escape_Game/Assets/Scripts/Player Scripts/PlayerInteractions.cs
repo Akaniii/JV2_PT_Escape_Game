@@ -119,6 +119,12 @@ public class PlayerInteractions : MonoBehaviour
             return false;
         }
 
+        // if you want to interact with a switch color, but the light is off
+        else if (_hitInfo.collider.GetComponent<SwitchColor>() != null && !_hitInfo.collider.GetComponent<SwitchColor>().GetLinkedLight().enabled)
+        {
+            return false;
+        }
+
         else
         {
             return true;

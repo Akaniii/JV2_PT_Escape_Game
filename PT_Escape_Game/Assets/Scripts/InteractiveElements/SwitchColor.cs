@@ -8,24 +8,35 @@ public class SwitchColor : Switch
 
     public override void Interact()
     {
-        // && FindObjectOfType<ColorLightManager>() => rajouter une condition qui permette de checker si on appuie sur la bonne lumière
-
         if (linkedLight.enabled && !colorLightFixed)
         {
-            FindAnyObjectByType<ColorLightManager>().CheckRightLight(this);
-            linkedLight.enabled = true;
-            colorLightFixed = true;
+            if (FindAnyObjectByType<ColorLightManager>().CheckRightLight(this))
+            {
+                FixOn();
+            }
         }
     }
 
-    public SwitchColor GetSwitchColor()
+    public void FixOn()
     {
-        return this;
+        colorLightFixed = true;
+        gameObject.GetComponent<Collider>().enabled = false;
+    }
+
+    public override void TurnOff()
+    {
+        linkedLight.enabled = false; 
+        colorLightFixed = false;
+        gameObject.GetComponent<Collider>().enabled = true;
     }
 
     public bool GetColorLightFixed()
     {
         return colorLightFixed;
+    }
+    public Light GetLinkedLight()
+    {
+        return linkedLight;
     }
 
 }
