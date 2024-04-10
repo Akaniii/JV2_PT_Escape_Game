@@ -11,7 +11,7 @@ public class BoutonSdb : StaticElement
     public override void Interact()
     {
 
-        int v = Pushup(codeToFind.Codex);
+         Pushup(codeToFind.Codex);
     }
     public int Pushup(int x)
     {
