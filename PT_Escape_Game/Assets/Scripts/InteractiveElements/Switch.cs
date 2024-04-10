@@ -5,19 +5,34 @@ using UnityEngine;
 public class Switch : StaticElement
 {
     [SerializeField]
-    private Light linkedLight;
+    protected Light linkedLight;
 
     public override void Interact()
     {
-        // Animation : effectuer une rotation de la porte
         if (linkedLight.enabled)
         {
-            linkedLight.enabled = false;
+            TurnOff();
         }
         else
         {
-            linkedLight.enabled = true;
+            TurnOn();
         }
+    }
+
+    public void TurnOn()
+    {
+        linkedLight.enabled = true;
+        SetAction("Turn Off");
+    }
+    public void TurnOff()
+    {
+        linkedLight.enabled = false;
+        SetAction("Turn On");
+    }
+
+    public Light GetLight()
+    {
+        return linkedLight;
     }
 
 }
