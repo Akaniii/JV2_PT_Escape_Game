@@ -25,7 +25,7 @@ public class PlayerUI : MonoBehaviour
         }
     }
 
-    public void ShowUIDropElement(GameObject _carriedElement)
+    public void ShowUIDropElement(MovableElement _carriedElement)
     {
         if (_carriedElement != null)
         {
@@ -38,12 +38,12 @@ public class PlayerUI : MonoBehaviour
         }
     }
 
-    public void ShowErrorNotification()
+    public void ShowErrorNotification(string errorMessage)
     {
         errorNotification.gameObject.SetActive(true);
-        errorNotification.text = "You cannot Interact with this for now.";
+        errorNotification.text = errorMessage;
 
-        HideErrorNotification(errorNotification);
+        StartCoroutine(HideErrorNotification(errorNotification));
     }
 
     public IEnumerator HideErrorNotification(TextMeshProUGUI text)

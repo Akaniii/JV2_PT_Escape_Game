@@ -9,17 +9,38 @@ public class Door : StaticElement
     [SerializeField]
     private Animator animatorDoor;
 
+    [SerializeField]
+    private string nameRequiredKey;
+
     public override void Interact()
     {
-        // Animation : effectuer une rotation de la porte
-        if (opened)
+        opened = true;
+        animatorDoor.SetTrigger("InteractionOpen");
+        FindObjectOfType<Player>().interactionsScript.DestroyCarriedElement();
+    }
+
+    public bool CheckRightKey()
+    {
+        MovableElement _carriedElement = FindObjectOfType<Player>().interactionsScript.GetCarriedElement();
+        if (!opened && _carriedElement != null)
         {
-            opened = false;
+            if (_carriedElement.GetSpecificity() == Specificity.Key && _carriedElement.GetName() == nameRequiredKey)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
         else
         {
-            opened = true;
-            animatorDoor.SetTrigger("InteractionOpen");
+            return false;
         }
+    }
+
+    public bool GetOpened()
+    {
+        return opened;
     }
 }
