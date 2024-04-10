@@ -13,6 +13,8 @@ public class Player : MonoBehaviour
     [SerializeField]
     private float speed, gravity, mouseSensitivity;
 
+    private bool inFocusMode;
+
     private Vector3 velocityPlayer;
 
     [SerializeField]
@@ -37,5 +39,10 @@ public class Player : MonoBehaviour
         interactionsScript.InteractionsManager(mainCamera);
 
         Debug.DrawLine(mainCamera.transform.position, mainCamera.transform.forward * 10, Color.blue);
+    }
+
+    public void SetFocusMode(bool newState)
+    {
+        inFocusMode = newState;
     }
 }
