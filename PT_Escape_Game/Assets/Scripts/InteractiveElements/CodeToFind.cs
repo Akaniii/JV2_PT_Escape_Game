@@ -7,12 +7,14 @@ public class CodeToFind : MonoBehaviour
 {
     [SerializeField] Door door;
     public TextMeshPro numberofcode ;
+    public TextMeshPro numberofcode1;
     
+
     //variable pour le code de SDB
     public int Codex = 0;
-    public int Codey = 0;
-    public int Codez = 0;
-    public int Codev = 0;
+    public int Codey = 1;
+    public int Codez = 2;
+    public int Codev = 3;
 
     //code d'entrée
     public int Codea = 0;
@@ -25,11 +27,14 @@ public class CodeToFind : MonoBehaviour
 
     public void Start()
     {
-        string mescouilles = Codex.ToString();
         
-        
+    
     }
-
+    public void Update()
+    {
+        numberofcode.text = Codex.ToString() + Codey.ToString() + Codez.ToString()+Codez.ToString();
+       
+    }
     public void CodeSdb ()
     {
         //code sdb
