@@ -6,7 +6,8 @@ public class PlayerInteractions : MonoBehaviour
 {
 
     [SerializeField]
-    private GameObject handPosition, carriedElement;
+    private GameObject handPosition;
+    private MovableElement carriedElement;
 
     public LayerMask maskInteractive;
 
@@ -23,17 +24,17 @@ public class PlayerInteractions : MonoBehaviour
                 // show input to interact
                 playerUIscript.ShowUIInteractionInput(hitInfo, true);
 
-                if ((hitInfo.collider.GetComponent<MovableElement>() != null && carriedElement == null) || hitInfo.collider.GetComponent<MovableElement>() == null)
+                if (Input.GetKeyDown(KeyCode.F))
                 {
-                    if (Input.GetKeyDown(KeyCode.F))
+                    if (!CheckEnabledInteractions(hitInfo))
+                    {
+                        playerUIscript.ShowErrorNotification(hitInfo.collider.GetComponent<InteractiveElement>().GetErrorText());
+                    }
+                    else
                     {
                         hitInfo.collider.GetComponent<InteractiveElement>().Interact();
                         playerUIscript.ShowUIInteractionInput(hitInfo, false);
                     }
-                }
-                else
-                {
-                    playerUIscript.ShowErrorNotification();
                 }
             }
             else
@@ -69,6 +70,31 @@ public class PlayerInteractions : MonoBehaviour
                 return false;
             }
         }
+        else if (_hitInfo.collider.GetComponent<Door>() != null)
+        {
+            if (!_hitInfo.collider.GetComponent<Door>().GetOpened())
+            {
+                return true;
+            }
+
+            else
+            {
+                return false;
+            }
+        }
+
+        else if (_hitInfo.collider.GetComponent<Puzzle>() != null)
+        {
+            if  (!_hitInfo.collider.GetComponent<Puzzle>().GetIsComplete())
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
         else if (_hitInfo.collider.GetComponent<InteractiveElement>() != null)
         {
             return true;
@@ -76,6 +102,26 @@ public class PlayerInteractions : MonoBehaviour
         else
         {
             return false;
+        }
+    }
+
+    private bool CheckEnabledInteractions(RaycastHit _hitInfo)
+    {
+        // if you want to pick a movable element while still holding another movable element
+        if (_hitInfo.collider.GetComponent<MovableElement>() != null && carriedElement != null)
+        {
+            return false;
+        }
+
+        // if you want to interact with a door, but don't have the right key
+        else if (_hitInfo.collider.GetComponent<Door>() != null && !_hitInfo.collider.GetComponent<Door>().CheckRightKey())
+        {
+            return false;
+        }
+
+        else
+        {
+            return true;
         }
     }
 
@@ -94,14 +140,26 @@ public class PlayerInteractions : MonoBehaviour
         }
     }
 
-    public GameObject GetCarriedElement()
+    public GameObject GetHandPosition()
     {
         return handPosition;
     }
 
-    public void SetCarriedElement(GameObject _carriedElement)
+    public MovableElement GetCarriedElement()
+    {
+        return carriedElement;
+    }
+
+    public void SetCarriedElement(MovableElement _carriedElement)
     {
         carriedElement = _carriedElement;
+    }
+
+    public void DestroyCarriedElement()
+    {
+        carriedElement.transform.position = new Vector3(0, 0, -46.51f);
+        carriedElement.transform.parent = null;
+        carriedElement = null;
     }
 
     private void DropCarriedElement()
@@ -113,7 +171,6 @@ public class PlayerInteractions : MonoBehaviour
             carriedElement.GetComponent<Collider>().enabled = true;
 
             carriedElement.transform.parent = null;
-
             carriedElement = null;
         }
     }

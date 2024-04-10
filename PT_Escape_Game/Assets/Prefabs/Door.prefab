@@ -121,7 +121,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nameElement: Door
   action: Open
+  errorText: You need the right key to unlock this door.
   animatorDoor: {fileID: 4734751397363357480}
+  nameRequiredKey: 
 --- !u!95 &4734751397363357480
 Animator:
   serializedVersion: 5
