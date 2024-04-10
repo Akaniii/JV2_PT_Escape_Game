@@ -100,6 +100,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nameElement: Sphere
   action: Pick
+  errorText: You already hold something.
+  isKey: 0
 --- !u!54 &1464502886948498990
 Rigidbody:
   m_ObjectHideFlags: 0

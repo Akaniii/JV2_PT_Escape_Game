@@ -5,6 +5,8 @@ using UnityEngine;
 public class MovableElement : InteractiveElement
 {
     private bool canBePicked = true;
+    [SerializeField]
+    private bool isKey;
 
     public override void Interact()
     {
@@ -12,8 +14,8 @@ public class MovableElement : InteractiveElement
         {
             canBePicked = false;
 
-            transform.parent = FindObjectOfType<Player>().interactionsScript.GetCarriedElement().transform;
-            FindObjectOfType<Player>().interactionsScript.SetCarriedElement(gameObject);
+            transform.parent = FindObjectOfType<Player>().interactionsScript.GetHandPosition().transform;
+            FindObjectOfType<Player>().interactionsScript.SetCarriedElement(this);
             transform.localPosition = Vector3.zero;
             transform.localEulerAngles = Vector3.zero; 
 
@@ -30,5 +32,10 @@ public class MovableElement : InteractiveElement
     public void SetCanBePicked(bool newBool)
     {
         canBePicked = newBool;
+    }
+
+    public bool GetIsKey()
+    {
+        return isKey;
     }
 }
