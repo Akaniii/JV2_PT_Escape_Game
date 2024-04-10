@@ -4908,6 +4908,14 @@ PrefabInstance:
       propertyPath: action
       value: Fill
       objectReference: {fileID: 0}
+    - target: {fileID: 129784518154471668, guid: a251cc3c8b9e3f940a70c82956282821, type: 3}
+      propertyPath: postIts.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 129784518154471668, guid: a251cc3c8b9e3f940a70c82956282821, type: 3}
+      propertyPath: SlotsPostIts.Array.size
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 271993381340489554, guid: a251cc3c8b9e3f940a70c82956282821, type: 3}
       propertyPath: m_Mesh
       value: 
