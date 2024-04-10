@@ -6,7 +6,7 @@ public class MovableElement : InteractiveElement
 {
     private bool canBePicked = true;
     [SerializeField]
-    private bool isKey;
+    private Specificity specificity;
 
     public override void Interact()
     {
@@ -34,8 +34,17 @@ public class MovableElement : InteractiveElement
         canBePicked = newBool;
     }
 
-    public bool GetIsKey()
+    public Specificity GetSpecificity()
     {
-        return isKey;
+        return specificity;
     }
 }
+
+public enum Specificity
+{
+    Nothing,
+    Key,
+    PostIt
+}
+
+

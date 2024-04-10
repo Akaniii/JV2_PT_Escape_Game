@@ -24,7 +24,7 @@ public class Door : StaticElement
         MovableElement _carriedElement = FindObjectOfType<Player>().interactionsScript.GetCarriedElement();
         if (!opened && _carriedElement != null)
         {
-            if (_carriedElement.GetIsKey() && _carriedElement.GetName() == nameRequiredKey)
+            if (_carriedElement.GetSpecificity() == Specificity.Key && _carriedElement.GetName() == nameRequiredKey)
             {
                 return true;
             }

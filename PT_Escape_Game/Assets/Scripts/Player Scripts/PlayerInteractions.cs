@@ -83,6 +83,18 @@ public class PlayerInteractions : MonoBehaviour
             }
         }
 
+        else if (_hitInfo.collider.GetComponent<Puzzle>() != null)
+        {
+            if  (!_hitInfo.collider.GetComponent<Puzzle>().GetIsComplete())
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
         else if (_hitInfo.collider.GetComponent<InteractiveElement>() != null)
         {
             return true;
