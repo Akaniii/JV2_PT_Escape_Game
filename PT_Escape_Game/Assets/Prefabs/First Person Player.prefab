@@ -93,7 +93,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.34, y: 0.34, z: 0.34}
+  m_LocalScale: {x: 0.8, y: 0.8, z: 0.8}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 6672148216115153309}
@@ -141,7 +141,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   characterController: {fileID: 6424133332968423968}
   speed: 4
-  gravity: -2
+  gravity: -500
   mouseSensitivity: 500
   mainCamera: {fileID: 5480611099257658738}
   movementScript: {fileID: 181761411623925816}
@@ -177,7 +177,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   handPosition: {fileID: 4825366144793805434}
-  carriedElement: {fileID: 0}
   maskInteractive:
     serializedVersion: 2
     m_Bits: 64

@@ -11,24 +11,27 @@ public class Movement : MonoBehaviour
 
     public void PlayerMovements(CharacterController _characterController, Vector3 _velocity, float _speed, float _gravity)
     {
-        // check if Player is on the Ground
-        CheckGround(_velocity);
+        if (FindObjectOfType<Player>().interactionsScript.GetCurrentPuzzle() == null)
+        {       
+            // check if Player is on the Ground
+            CheckGround(_velocity);
 
-        // track the keyboards and controller inputs for movements (Go to Project Settings to change them)
-        float moveAxisX = Input.GetAxis("Horizontal");
-        float moveAxisZ = Input.GetAxis("Vertical");
+            // track the keyboards and controller inputs for movements (Go to Project Settings to change them)
+            float moveAxisX = Input.GetAxis("Horizontal");
+            float moveAxisZ = Input.GetAxis("Vertical");
 
-        // save in a Vector 3 the directions tracked via inputs
-        Vector3 direction = transform.right * moveAxisX + transform.forward * moveAxisZ;
+            // save in a Vector 3 the directions tracked via inputs
+            Vector3 direction = transform.right * moveAxisX + transform.forward * moveAxisZ;
 
-        // apply the movements
-        _characterController.Move(direction * _speed * Time.deltaTime);
+            // apply the movements
+            _characterController.Move(direction * _speed * Time.deltaTime);
 
-        // save the gravity on the velocity Y axis 
-        _velocity.y += _gravity * Time.deltaTime;
+            // save the gravity on the velocity Y axis 
+            _velocity.y += _gravity * Time.deltaTime;
 
-        // apply the gravity in movements
-        _characterController.Move(_velocity * Time.deltaTime);
+            // apply the gravity in movements
+            _characterController.Move(_velocity * Time.deltaTime);
+        }
     }
 
     private void CheckGround(Vector3 _velocity)

@@ -1,5 +1,7 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 
 public class PlayerInteractions : MonoBehaviour
@@ -8,6 +10,7 @@ public class PlayerInteractions : MonoBehaviour
     [SerializeField]
     private GameObject handPosition;
     private MovableElement carriedElement;
+    private Puzzle currentPuzzle;
 
     public LayerMask maskInteractive;
 
@@ -49,7 +52,7 @@ public class PlayerInteractions : MonoBehaviour
             playerUIscript.ShowUIInteractionInput(hitInfo, false);
         }
 
-        DropCarriedElement();
+        BackInteraction();
 
         playerUIscript.ShowUIDropElement(carriedElement);
 
@@ -85,7 +88,7 @@ public class PlayerInteractions : MonoBehaviour
 
         else if (_hitInfo.collider.GetComponent<Puzzle>() != null)
         {
-            if  (!_hitInfo.collider.GetComponent<Puzzle>().GetIsComplete())
+            if  (!_hitInfo.collider.GetComponent<Puzzle>().GetIsComplete() && currentPuzzle == null)
             {
                 return true;
             }
@@ -161,6 +164,16 @@ public class PlayerInteractions : MonoBehaviour
         carriedElement = _carriedElement;
     }
 
+    public Puzzle GetCurrentPuzzle()
+    {
+        return currentPuzzle;
+    }
+
+    public void SetCurrentPuzzle(Puzzle newPuzzle)
+    {
+        currentPuzzle = newPuzzle;
+    }
+
     public void DestroyCarriedElement()
     {
         carriedElement.transform.position = new Vector3(0, 0, -46.51f);
@@ -168,16 +181,36 @@ public class PlayerInteractions : MonoBehaviour
         carriedElement = null;
     }
 
-    private void DropCarriedElement()
+    private void BackInteraction()
     {
-        if (carriedElement != null && Input.GetKey(KeyCode.X))
+        if (Input.GetKey(KeyCode.X))
         {
-            carriedElement.GetComponent<MovableElement>().SetCanBePicked(true);
-            carriedElement.GetComponent<Rigidbody>().isKinematic = false;
-            carriedElement.GetComponent<Collider>().enabled = true;
-
-            carriedElement.transform.parent = null;
-            carriedElement = null;
+            if (currentPuzzle != null)
+            {
+                if (carriedElement != null)
+                {
+                    // code où on repose l'élément dans le puzzle
+                }
+                else
+                {
+                    //go out of the puzzle
+                    currentPuzzle.QuitFocusMode();
+                }
+            }
+            else if (carriedElement != null)
+            {
+                DropCarriedElement();
+            }
         }
+    }
+
+    public void DropCarriedElement()
+    {
+        carriedElement.GetComponent<MovableElement>().SetCanBePicked(true);
+        carriedElement.GetComponent<Rigidbody>().isKinematic = false;
+        carriedElement.GetComponent<Collider>().enabled = true;
+
+        carriedElement.transform.parent = null;
+        carriedElement = null;
     }
 }

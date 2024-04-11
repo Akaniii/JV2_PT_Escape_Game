@@ -4,13 +4,16 @@ using UnityEngine;
 
 public class MovableElement : InteractiveElement
 {
-    private bool canBePicked = true;
     [SerializeField]
-    private Specificity specificity;
+    protected bool canBePicked = true;
+    [SerializeField]
+    protected Specificity specificity;
+
+    private bool isInPuzzle;
 
     public override void Interact()
     {
-        if (canBePicked)
+        if (canBePicked && !isInPuzzle)
         {
             canBePicked = false;
 
@@ -22,6 +25,21 @@ public class MovableElement : InteractiveElement
             gameObject.GetComponent<Rigidbody>().isKinematic = true;
             gameObject.GetComponent<Collider>().enabled = false;
         }
+        else if (isInPuzzle)
+        {
+            transform.localPosition += new Vector3(0.2f, 0f, 0f);
+            FindObjectOfType<Player>().interactionsScript.SetCarriedElement(this);
+        }
+    }
+
+    public bool GetIsInPuzzle()
+    {
+        return isInPuzzle;
+    }
+
+    public void SetIsInPuzzle(bool newBool)
+    {
+        isInPuzzle = newBool;
     }
 
     public bool GetCanBePicked()

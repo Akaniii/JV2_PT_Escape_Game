@@ -13,8 +13,6 @@ public class Player : MonoBehaviour
     [SerializeField]
     private float speed, gravity, mouseSensitivity;
 
-    private bool inFocusMode;
-
     private Vector3 velocityPlayer;
 
     [SerializeField]
@@ -41,8 +39,25 @@ public class Player : MonoBehaviour
         Debug.DrawLine(mainCamera.transform.position, mainCamera.transform.forward * 10, Color.blue);
     }
 
-    public void SetFocusMode(bool newState)
+    public Player GetPlayer()
     {
-        inFocusMode = newState;
+        return this;
+    }
+
+    public void SetTransform(Vector3 newPosition, Vector3 newRotation)
+    {
+        transform.position = newPosition;
+        transform.eulerAngles = newRotation;
+    }
+
+    public Camera GetCamera ()
+    {
+        return mainCamera;
+    }
+
+    public void SetCameraTransform(Vector3 newPosition, Vector3 newRotation)
+    {
+        mainCamera.transform.localPosition = newPosition;
+        mainCamera.transform.localEulerAngles = newRotation;
     }
 }

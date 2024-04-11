@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 290617723020530893}
   - component: {fileID: 4821819208848775092}
   - component: {fileID: 1464502886948498990}
-  - component: {fileID: 5700207250798522091}
+  - component: {fileID: 6882018823643736185}
   m_Layer: 6
   m_Name: MovableElement
   m_TagString: Untagged
@@ -101,7 +101,7 @@ MonoBehaviour:
   nameElement: Sphere
   action: Pick
   errorText: You already hold something.
-  isKey: 0
+  specificity: 0
 --- !u!54 &1464502886948498990
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -129,8 +129,8 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!65 &5700207250798522091
-BoxCollider:
+--- !u!64 &6882018823643736185
+MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -147,6 +147,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 0}
