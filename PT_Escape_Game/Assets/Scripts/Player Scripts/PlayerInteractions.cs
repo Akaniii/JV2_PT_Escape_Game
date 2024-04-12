@@ -54,7 +54,7 @@ public class PlayerInteractions : MonoBehaviour
 
         BackInteraction();
 
-        playerUIscript.ShowUIDropElement(carriedElement);
+        playerUIscript.ShowUIBack(carriedElement);
 
         RotateCarriedElement();
     }
@@ -111,7 +111,7 @@ public class PlayerInteractions : MonoBehaviour
     private bool CheckEnabledInteractions(RaycastHit _hitInfo)
     {
         // if you want to pick a movable element while still holding another movable element
-        if (_hitInfo.collider.GetComponent<MovableElement>() != null && carriedElement != null)
+        if (_hitInfo.collider.GetComponent<MovableElement>() != null && carriedElement != null && currentPuzzle == null)
         {
             return false;
         }
@@ -183,13 +183,17 @@ public class PlayerInteractions : MonoBehaviour
 
     private void BackInteraction()
     {
-        if (Input.GetKey(KeyCode.X))
+        if (Input.GetKeyDown(KeyCode.X))
         {
             if (currentPuzzle != null)
             {
                 if (carriedElement != null)
                 {
-                    // code où on repose l'élément dans le puzzle
+                    carriedElement.transform.localPosition -= new Vector3(0.2f, 0f, 0f);
+
+                    carriedElement.GetComponent<MovableElement>().SetCanBePicked(true);
+                    carriedElement.GetComponent<Collider>().enabled = true;
+                    carriedElement = null;
                 }
                 else
                 {

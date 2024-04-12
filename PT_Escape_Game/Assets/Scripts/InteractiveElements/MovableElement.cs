@@ -27,8 +27,30 @@ public class MovableElement : InteractiveElement
         }
         else if (isInPuzzle)
         {
-            transform.localPosition += new Vector3(0.2f, 0f, 0f);
-            FindObjectOfType<Player>().interactionsScript.SetCarriedElement(this);
+            if (FindObjectOfType<Player>().interactionsScript.GetCarriedElement())
+            {
+                // switch the position of each post it
+                Vector3 pastPosition = transform.localPosition;
+
+                transform.localPosition = FindObjectOfType<Player>().interactionsScript.GetCarriedElement().transform.localPosition;
+                transform.localPosition -= new Vector3(0.2f, 0f, 0f);
+
+                FindObjectOfType<Player>().interactionsScript.GetCarriedElement().transform.localPosition = pastPosition;
+
+                FindObjectOfType<Player>().interactionsScript.GetCarriedElement().GetComponent<Collider>().enabled = true;
+                FindObjectOfType<Player>().interactionsScript.GetCarriedElement().SetCanBePicked(true);
+                FindObjectOfType<Player>().interactionsScript.SetCarriedElement(null);
+            }
+
+            else
+            {
+                // move forward the post it
+                transform.localPosition += new Vector3(0.2f, 0f, 0f);
+                
+                // set the carried element on Player
+                FindObjectOfType<Player>().interactionsScript.SetCarriedElement(this);
+                gameObject.GetComponent<Collider>().enabled = false;
+            }
         }
     }
 

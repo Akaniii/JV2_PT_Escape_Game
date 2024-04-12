@@ -25,18 +25,24 @@ public class PlayerUI : MonoBehaviour
         }
     }
 
-    public void ShowUIDropElement(InteractiveElement _carriedElement)
+    public void ShowUIBack(InteractiveElement _carriedElement)
     {
-        /*
-        //if in focus Mode
-        if (FindObjectOfType<Player>().GetFocusMode())
+        //if in puzzle
+        if (FindObjectOfType<Player>().interactionsScript.GetCurrentPuzzle() != null)
         {
             dropInputInfo.gameObject.SetActive(true);
-            dropInputInfo.text = "X - Leave " + _carriedElement.GetComponent<InteractiveElement>().GetName();
-        }*/
+            if (_carriedElement != null)
+            {
+                dropInputInfo.text = "X - Drop " + _carriedElement.GetComponent<InteractiveElement>().GetName();
+            }
+            else
+            {
+                dropInputInfo.text = "X - Leave " + FindObjectOfType<Player>().interactionsScript.GetCurrentPuzzle().GetName();
+            }
+        }
 
         //if carry an element
-        if (_carriedElement != null)
+        else if (_carriedElement != null)
         {
             dropInputInfo.gameObject.SetActive(true);
             dropInputInfo.text = "X - Drop " + _carriedElement.GetComponent<InteractiveElement>().GetName();
