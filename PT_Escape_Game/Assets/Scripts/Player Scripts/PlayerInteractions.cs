@@ -61,6 +61,8 @@ public class PlayerInteractions : MonoBehaviour
 
     private bool CheckInteractionsRaycast(RaycastHit _hitInfo)
     {
+        Debug.Log("Coucou Collider");
+
         if (_hitInfo.collider.GetComponent<MovableElement>() != null)
         {
             if (_hitInfo.collider.GetComponent<MovableElement>().GetCanBePicked())
@@ -102,6 +104,7 @@ public class PlayerInteractions : MonoBehaviour
         {
             return true;
         }
+
         else
         {
             return false;
