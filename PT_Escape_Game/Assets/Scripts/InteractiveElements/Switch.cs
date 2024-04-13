@@ -5,11 +5,21 @@ using UnityEngine;
 public class Switch : StaticElement
 {
     [SerializeField]
-    protected Light linkedLight;
+    protected GameObject linkedLight;
+
+    [SerializeField]
+    protected GameObject lightMesh;
+
+    [SerializeField]
+    protected Material [] materialLight;
+
+    [SerializeField]
+    protected Animator animatorSwitch;
 
     public override void Interact()
     {
-        if (!linkedLight.enabled)
+        animatorSwitch.SetTrigger("PressButton");
+        if (!linkedLight.activeSelf)
         {
             TurnOn();
         }
@@ -21,16 +31,18 @@ public class Switch : StaticElement
 
     public virtual void TurnOn()
     {
-        linkedLight.enabled = true;
+        linkedLight.SetActive(true);
+        lightMesh.GetComponent<MeshRenderer>().material = materialLight[1];
         SetAction("Turn Off");
     }
     public virtual void TurnOff()
     {
-        linkedLight.enabled = false;
+        linkedLight.SetActive(false);
+        lightMesh.GetComponent<MeshRenderer>().material = materialLight[0];
         SetAction("Turn On");
     }
 
-    public Light GetLight()
+    public GameObject GetLight()
     {
         return linkedLight;
     }

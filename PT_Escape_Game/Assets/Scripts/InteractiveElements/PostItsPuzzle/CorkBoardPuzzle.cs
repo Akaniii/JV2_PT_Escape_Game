@@ -26,14 +26,12 @@ public class CorkBoardPuzzle : Puzzle
                 {
                     // take post it from hand of the player
                     postItsList[i] = FindObjectOfType<Player>().interactionsScript.GetCarriedElement();
-                    Vector3 scalePostIt = FindObjectOfType<Player>().interactionsScript.GetCarriedElement().transform.localScale;
 
                     postItsList[i].transform.parent = transform;
 
                     // put post it on predefined slot on cork board (list of vector)
-                    postItsList[i].transform.localPosition = SlotsPostIts[i];
-                    postItsList[i].transform.localEulerAngles = Vector3.zero;
-                    postItsList[i].transform.localScale = scalePostIt;
+                    postItsList[i].transform.position = SlotsPostIts[i];
+                    postItsList[i].transform.eulerAngles = Vector3.zero;
 
                     // disable collisions detection and Rigidbody for prevent the fall of post it
                     postItsList[i].GetComponent<Rigidbody>().isKinematic = true;

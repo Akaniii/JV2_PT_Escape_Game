@@ -61,8 +61,6 @@ public class PlayerInteractions : MonoBehaviour
 
     private bool CheckInteractionsRaycast(RaycastHit _hitInfo)
     {
-        Debug.Log("Coucou Collider");
-
         if (_hitInfo.collider.GetComponent<MovableElement>() != null)
         {
             if (_hitInfo.collider.GetComponent<MovableElement>().GetCanBePicked())
@@ -126,7 +124,7 @@ public class PlayerInteractions : MonoBehaviour
         }
 
         // if you want to interact with a switch color, but the light is off
-        else if (_hitInfo.collider.GetComponent<SwitchColor>() != null && !_hitInfo.collider.GetComponent<SwitchColor>().GetLinkedLight().enabled)
+        else if (_hitInfo.collider.GetComponent<SwitchColor>() != null && !_hitInfo.collider.GetComponent<SwitchColor>().GetLinkedLight().activeSelf)
         {
             return false;
         }

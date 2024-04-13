@@ -18,7 +18,9 @@ public class ColorLightManager : Switch
 
     public override void Interact()
     {
-        if (!linkedLight.enabled)
+        animatorSwitch.SetTrigger("PressButton");
+
+        if (!linkedLight.activeSelf)
         {
             // turn on normal light
             TurnOn();
@@ -41,7 +43,7 @@ public class ColorLightManager : Switch
 
     public IEnumerator AlternationLight()
     {
-        while(!linkedLight.enabled)
+        while(!linkedLight.activeSelf)
         {
             yield return new WaitForSeconds(2);
             float timerLightSystem = 1.5f;
@@ -63,8 +65,9 @@ public class ColorLightManager : Switch
                         }
                     }
 
+                    switchLights[i].GetLightMesh().GetComponent<MeshRenderer>().material = switchLights[i].GetMaterialList()[1];
                     //enable one light
-                    switchLights[i].GetLinkedLight().enabled = true;
+                    switchLights[i].GetLinkedLight().SetActive(true);
                 }
 
                 timerLightSystem -= .15f;
@@ -104,9 +107,11 @@ public class ColorLightManager : Switch
         for (int i = 0; i < switchLights.Length; i++)
         {
             switchLights[i].TurnOff();
+
+            //switchLights[i].TurnOff();
         }
 
-        if (!linkedLight.enabled)
+        if (!linkedLight.activeSelf)
         {
             StartCoroutine("AlternationLight");
         }
