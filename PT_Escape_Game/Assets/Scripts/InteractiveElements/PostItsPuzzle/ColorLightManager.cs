@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class ColorLightManager : Switch
@@ -9,6 +10,9 @@ public class ColorLightManager : Switch
     
     [SerializeField]
     private SwitchColor[] switchLights;
+
+    [SerializeField]
+    private GameObject strongboxDoor, strongboxHandle;
 
     private int currentOrder;
 
@@ -79,7 +83,7 @@ public class ColorLightManager : Switch
             //victoryCheck
             if (currentOrder == 4)
             {
-                // Fonction de victoire
+                StartCoroutine(Openstrongbox());
             }
 
             return true;
@@ -106,5 +110,17 @@ public class ColorLightManager : Switch
         {
             StartCoroutine("AlternationLight");
         }
+    }
+
+    public IEnumerator Openstrongbox()
+    {
+
+        strongboxHandle.GetComponent<Animator>().SetTrigger("RotateHandle");
+        // rotation de la manivelle
+
+        yield return new WaitForSeconds(1.5f);
+
+        strongboxDoor.GetComponent<Animator>().SetTrigger("RotateDoor");
+        // ouverture de la porte
     }
 }
