@@ -4,7 +4,6 @@ using UnityEngine;
 using TMPro;
 using UnityEditor.PackageManager;
 using OpenCover.Framework.Model;
-using System.Linq.Expressions;
 
 public class Player : MonoBehaviour
 {
@@ -18,8 +17,6 @@ public class Player : MonoBehaviour
 
     [SerializeField]
     private Camera mainCamera;
-
-    private bool canMove = true;
 
     public Movement movementScript;
     public CameraControl cameraScript;
@@ -56,16 +53,6 @@ public class Player : MonoBehaviour
     public Camera GetCamera ()
     {
         return mainCamera;
-    }
-
-    public bool GetCanMove()
-    {
-        return canMove;
-    }
-
-    public void SetCanMove(bool newBool)
-    {
-        canMove = newBool;
     }
 
     public void SetCameraTransform(Vector3 newPosition, Vector3 newRotation)

@@ -40,9 +40,6 @@ public class SwitchColor : Switch
         colorLightFixed = false;
         lightMesh.GetComponent<MeshRenderer>().material = materialLight[0];
         gameObject.GetComponent<Collider>().enabled = true;
-
-        tinyLight.SetActive(false);
-        tinyLightMesh.GetComponent<MeshRenderer>().material = materialLight[0];
     }
 
     public bool GetColorLightFixed()

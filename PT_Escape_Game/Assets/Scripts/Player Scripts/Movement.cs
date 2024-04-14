@@ -11,7 +11,7 @@ public class Movement : MonoBehaviour
 
     public void PlayerMovements(CharacterController _characterController, Vector3 _velocity, float _speed, float _gravity)
     {
-        if (FindObjectOfType<Player>().interactionsScript.GetCurrentPuzzle() == null && FindObjectOfType<Player>().GetCanMove())
+        if (FindObjectOfType<Player>().interactionsScript.GetCurrentPuzzle() == null)
         {       
             // check if Player is on the Ground
             CheckGround(_velocity);

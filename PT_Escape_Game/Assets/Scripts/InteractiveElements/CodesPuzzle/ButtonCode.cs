@@ -18,7 +18,7 @@ public class ButtonCode : StaticElement
         if (typeAction == TypeAction.Increase)
         {
             // if currentCode is at the max, reset to 0
-            if (currentCode == listPossibilies.Length - 1)
+            if (currentCode.ToString() == listPossibilies[listPossibilies.Length - 1])
             {
                 codePart.ResetCurrentStep(0);
             }
@@ -32,7 +32,7 @@ public class ButtonCode : StaticElement
         else
         {
             // if currentCode is at 0 index, reset to max
-            if (currentCode == 0)
+            if (currentCode.ToString() == listPossibilies[0])
             {
                 codePart.ResetCurrentStep(listPossibilies.Length - 1);
             }
@@ -46,7 +46,6 @@ public class ButtonCode : StaticElement
 
         //apply modifications
         codePart.SetTextCodePart(listPossibilies[codePart.GetCurrentStep()]);
-        codePart.GetCodesManager().CheckCode();
     }
 }
 

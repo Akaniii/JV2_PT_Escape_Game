@@ -11,18 +11,11 @@ public class CodePart : MonoBehaviour
     [SerializeField]
     private int currentStep;
 
-    private int originalStep;
-
     [SerializeField]
     private string[] listPossibilities;
 
     [SerializeField]
     private TextMeshPro textCodePart;
-
-    public void Start()
-    {
-        originalStep = currentStep;
-    }
 
     public void ChangeCurrentStep(int changement)
     {
@@ -36,10 +29,6 @@ public class CodePart : MonoBehaviour
     public int GetCurrentStep()
     {
         return currentStep;
-    }
-    public int GetOriginalStep()
-    {
-        return originalStep;
     }
 
     public string[] GetListPossibilities()
@@ -55,11 +44,7 @@ public class CodePart : MonoBehaviour
     public void SetTextCodePart(string newText)
     {
         textCodePart.text = newText;
-    }
-
-    public CodesManager GetCodesManager()
-    {
-        return codeManager;
+        codeManager.CheckCode();
     }
 
     public void DisableButtons()
@@ -67,14 +52,6 @@ public class CodePart : MonoBehaviour
         for (int i = 0; i < 2; i++)
         {
             transform.GetChild(i).gameObject.GetComponent<Collider>().enabled = false;
-        }
-    }
-
-    public void RenableButtons() 
-    {
-        for (int i = 0; i < 2; i++)
-        {
-            transform.GetChild(i).gameObject.GetComponent<Collider>().enabled = true;
         }
     }
 }
