@@ -22,9 +22,42 @@ public class BathroomManager : CodesManager
     [SerializeField]
     private Material[] lightMaterials;
 
+    [SerializeField]
+    private GameObject boxDoor, reward;
+
+    private bool isReseting;
+
+    public override void Interact()
+    {
+        // if we hold a post it
+        if (!isComplete && !isReseting)
+        {
+            EnterFocusMode();
+            for (int i = 0; i < currentCode.Length; i++)
+            {
+                currentCode[i].RenableButtons();
+            }
+        }
+    }
+
+    public override void QuitFocusMode()
+    {
+        base.QuitFocusMode();
+
+        for (int i = 0; i < currentCode.Length; i++)
+        {
+            currentCode[i].DisableButtons();
+        }
+    }
+
     public int GetHotnessLevel()
     {
         return hotnessLevel;
+    }
+
+    public bool GetIsReseting()
+    {
+        return isReseting;
     }
 
     public void IncreaseHotnessLevel()
@@ -66,23 +99,36 @@ public class BathroomManager : CodesManager
         }
     }
 
+    public override void VictoryCode()
+    {
+        isComplete = true;
+        QuitFocusMode();
+    }
+
     public IEnumerator MakeTextAppearLerp(TextMeshPro text)
     {
         float elapsedTime = 0f;
         Color newColor = new Color(text.color.r, text.color.g, text.color.b, 0.3f);
         Color currentColor = text.color;
 
-        while (elapsedTime < 3f)
+        while (elapsedTime < 5f)
         {
             elapsedTime += Time.deltaTime;
 
-            text.color = Color.Lerp(currentColor, newColor, elapsedTime/3f);
+            text.color = Color.Lerp(currentColor, newColor, elapsedTime/5f);
             yield return null;
         }
     }
 
     public IEnumerator ErrorCode()
     {
+        isReseting = true;
+
+        for (int i = 0; i < currentCode.Length; i++)
+        {
+            currentCode[i].DisableButtons();
+        }
+
         for (int i = 0; i < 2; i++)
         {
             for (int j = 0; j < 5; j++)
@@ -116,5 +162,18 @@ public class BathroomManager : CodesManager
             transform.GetChild(i).gameObject.GetComponent<CodePart>().SetTextCodePart(code.GetListPossibilities()[code.GetOriginalStep()]);
             transform.GetChild(i).gameObject.GetComponent<CodePart>().ResetCurrentStep(code.GetOriginalStep());
         }
+
+        if (FindObjectOfType<Player>().interactionsScript.GetCurrentPuzzle() != null)
+        {
+            if ((FindObjectOfType<Player>().interactionsScript.GetCurrentPuzzle().gameObject.GetComponent<BathroomManager>() != null))
+            {
+                for (int i = 0; i < currentCode.Length; i++)
+                {
+                    currentCode[i].RenableButtons();
+                }
+            }
+        }
+
+        isReseting = false;
     }
 }

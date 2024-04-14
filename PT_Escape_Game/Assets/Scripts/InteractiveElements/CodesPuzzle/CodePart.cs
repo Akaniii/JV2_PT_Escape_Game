@@ -69,4 +69,12 @@ public class CodePart : MonoBehaviour
             transform.GetChild(i).gameObject.GetComponent<Collider>().enabled = false;
         }
     }
+
+    public void RenableButtons() 
+    {
+        for (int i = 0; i < 2; i++)
+        {
+            transform.GetChild(i).gameObject.GetComponent<Collider>().enabled = true;
+        }
+    }
 }

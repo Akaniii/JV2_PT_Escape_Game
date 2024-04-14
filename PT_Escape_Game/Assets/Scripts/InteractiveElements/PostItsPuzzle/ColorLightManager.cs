@@ -12,7 +12,13 @@ public class ColorLightManager : Switch
     private SwitchColor[] switchLights;
 
     [SerializeField]
-    private GameObject strongboxDoor, strongboxHandle, lightUV;
+    private SwitchUVLight lightUV;
+
+    [SerializeField]
+    private GameObject strongboxDoor, strongboxHandle, reward;
+
+    [SerializeField]
+    private TextMeshPro[] postsItTextsUV;
 
     private int currentOrder;
 
@@ -39,6 +45,8 @@ public class ColorLightManager : Switch
             // start alterned turn on of colored lights (must be named with string to stop it)
             StartCoroutine("AlternationLight");
         }
+
+        ManageUVTextPostIts();
     }
 
     public IEnumerator AlternationLight()
@@ -86,6 +94,7 @@ public class ColorLightManager : Switch
             //victoryCheck
             if (currentOrder == 4)
             {
+                StopCoroutine("AlternationLight");
                 StartCoroutine(Openstrongbox());
             }
 
@@ -107,13 +116,31 @@ public class ColorLightManager : Switch
         for (int i = 0; i < switchLights.Length; i++)
         {
             switchLights[i].TurnOff();
-
-            //switchLights[i].TurnOff();
         }
 
         if (!linkedLight.activeSelf)
         {
             StartCoroutine("AlternationLight");
+        }
+    }
+
+    public void ManageUVTextPostIts()
+    {
+        // if normal light is disabled, and UV light enabled
+        if (lightUV.GetLight().activeSelf && !linkedLight.activeSelf)
+        {
+            for (int i = 0; i < postsItTextsUV.Length; i++)
+            {
+                postsItTextsUV[i].gameObject.SetActive(true);
+            }
+        }
+
+        else
+        {
+            for (int i = 0; i < postsItTextsUV.Length; i++)
+            {
+                postsItTextsUV[i].gameObject.SetActive(false);
+            }
         }
     }
 
@@ -127,5 +154,6 @@ public class ColorLightManager : Switch
 
         strongboxDoor.GetComponent<Animator>().SetTrigger("RotateDoor");
         // ouverture de la porte
+        reward.GetComponent<MovableElement>().SetCanBePicked(true);
     }
 }
