@@ -9,8 +9,8 @@ public class GameManager1 : MonoBehaviour
     public bool startPlaying=false;
     public BeatScroller theBS;
     public static GameManager1 instance;
-    
-    // Start is called before the first frame update
+
+    //Start is called before the first frame update
     void Start()
     {
         instance = this;
@@ -21,7 +21,7 @@ public class GameManager1 : MonoBehaviour
     {
         if (!startPlaying)
         {
-            if (Input.anyKeyDown)
+            if (Input.GetKeyDown(KeyCode.F))
             {
                 startPlaying = true;
                 theBS.hasStarted = true;

@@ -9,7 +9,7 @@ public class NoteObject : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
@@ -27,7 +27,7 @@ public class NoteObject : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.tag=="Activator")
+        if (other.tag == "Activator")
         {
             CanBepressed = true;
         }
@@ -35,7 +35,7 @@ public class NoteObject : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D other)
     {
-        if (other.tag == "Activator"&&gameObject.activeSelf)
+        if (other.tag == "Activator" && gameObject.activeSelf)
         {
             CanBepressed = false;
             GameManager1.instance.NoteMissed();

@@ -475,7 +475,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CanBepressed: 0
-  keyToPress: 113
+  keyToPress: 0
 --- !u!58 &249738132
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -1482,7 +1482,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CanBepressed: 0
-  keyToPress: 119
+  keyToPress: 0
 --- !u!58 &761584994
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -2154,7 +2154,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CanBepressed: 0
-  keyToPress: 101
+  keyToPress: 0
 --- !u!58 &1398550849
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -2289,7 +2289,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CanBepressed: 0
-  keyToPress: 113
+  keyToPress: 0
 --- !u!58 &1463689997
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -2556,7 +2556,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CanBepressed: 0
-  keyToPress: 114
+  keyToPress: 0
 --- !u!58 &1658910196
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -2811,7 +2811,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CanBepressed: 0
-  keyToPress: 119
+  keyToPress: 0
 --- !u!58 &1700344650
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -3052,7 +3052,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CanBepressed: 0
-  keyToPress: 101
+  keyToPress: 0
 --- !u!58 &1897153389
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -3266,7 +3266,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CanBepressed: 0
-  keyToPress: 113
+  keyToPress: 0
 --- !u!58 &1952031235
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -3627,7 +3627,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CanBepressed: 0
-  keyToPress: 114
+  keyToPress: 0
 --- !u!58 &1957691930
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -4233,7 +4233,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CanBepressed: 0
-  keyToPress: 119
+  keyToPress: 0
 --- !u!58 &2117649549
 CircleCollider2D:
   m_ObjectHideFlags: 0
