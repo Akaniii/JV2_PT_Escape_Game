@@ -86,6 +86,18 @@ public class PlayerInteractions : MonoBehaviour
             }
         }
 
+        else if (_hitInfo.collider.GetComponent<BathroomManager>() != null)
+        {
+            if (!_hitInfo.collider.GetComponent<BathroomManager>().GetIsReseting())
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
         else if (_hitInfo.collider.GetComponent<Puzzle>() != null)
         {
             if  (!_hitInfo.collider.GetComponent<Puzzle>().GetIsComplete() && currentPuzzle == null)

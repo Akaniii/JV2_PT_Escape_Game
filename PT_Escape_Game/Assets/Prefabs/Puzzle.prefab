@@ -100,7 +100,9 @@ MonoBehaviour:
   nameElement: CorkBoard
   action: 
   errorText: 
-  postIts: []
+  positionPuzzle: {x: 0, y: 0, z: 0}
+  rotationPuzzle: {x: 0, y: 0, z: 0}
+  postItsList: []
   SlotsPostIts: []
 --- !u!65 &8568175548127863329
 BoxCollider:

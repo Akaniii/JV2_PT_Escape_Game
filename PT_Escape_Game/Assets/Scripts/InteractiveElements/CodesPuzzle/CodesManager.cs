@@ -3,14 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
-public class CodesManager : MonoBehaviour
+public class CodesManager : Puzzle
 {
     [SerializeField]
     private string[] codeToFind;
     [SerializeField]
-    private CodePart[] currentCode;
+    protected CodePart[] currentCode;
 
-    public void CheckCode()
+    public virtual void CheckCode()
     {
         int checkRightCode = 0;
 
@@ -26,6 +26,8 @@ public class CodesManager : MonoBehaviour
         // if all part are corrects, validate
         if (checkRightCode == currentCode.Length)
         {
+            isComplete = true;
+
             VictoryCode();
 
             // disable all buttons
@@ -38,6 +40,6 @@ public class CodesManager : MonoBehaviour
 
     public virtual void VictoryCode()
     {
-        Debug.Log("Right Code Found");
+        // virtual method that has to be override
     }
 }
