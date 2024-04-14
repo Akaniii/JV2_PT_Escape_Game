@@ -3,14 +3,24 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using Unity.VisualScripting;
+using UnityEditor.Build.Reporting;
 
 public class BathroomManager : CodesManager
 {
     [SerializeField]
     private int hotnessLevel = 0;
 
+    [SerializeField] 
+    private int stepIncrease = 0, maxSteps;
+
     [SerializeField]
     private TextMeshPro[] hiddenTextsMirror;
+
+    [SerializeField]
+    private GameObject[] lightsMeshes, lights;
+
+    [SerializeField]
+    private Material[] lightMaterials;
 
     public int GetHotnessLevel()
     {
@@ -30,6 +40,32 @@ public class BathroomManager : CodesManager
         }
     }
 
+    public override void CheckCode()
+    {
+        base.CheckCode();
+
+        // the player has limited tries before it reboot
+        AddStepIncrease();
+    }
+
+    public void AddStepIncrease()
+    {
+        if (stepIncrease < 5)
+        {
+            lights[stepIncrease].SetActive(true);
+            lightsMeshes[stepIncrease].GetComponent<MeshRenderer>().material = lightMaterials[1];
+        }
+
+        stepIncrease++;
+
+        if (stepIncrease == maxSteps && !isComplete)
+        {
+            stepIncrease = 0;
+
+            StartCoroutine(ErrorCode());
+        }
+    }
+
     public IEnumerator MakeTextAppearLerp(TextMeshPro text)
     {
         float elapsedTime = 0f;
@@ -42,6 +78,43 @@ public class BathroomManager : CodesManager
 
             text.color = Color.Lerp(currentColor, newColor, elapsedTime/3f);
             yield return null;
+        }
+    }
+
+    public IEnumerator ErrorCode()
+    {
+        for (int i = 0; i < 2; i++)
+        {
+            for (int j = 0; j < 5; j++)
+            {
+                lights[j].SetActive(false);
+                lightsMeshes[j].GetComponent<MeshRenderer>().material = lightMaterials[0];
+            }
+
+            yield return new WaitForSeconds(.5f);
+
+            for (int k = 0; k < 5; k++)
+            {
+                lights[k].SetActive(true);
+                lightsMeshes[k].GetComponent<MeshRenderer>().material = lightMaterials[1];
+            }
+
+            yield return new WaitForSeconds(.5f);
+        }
+
+        for (int j = 0; j < 5; j++)
+        {
+            lights[j].SetActive(false);
+            lightsMeshes[j].GetComponent<MeshRenderer>().material = lightMaterials[0];
+        }
+
+        for (int i = 0; i < 6; i++)
+        {
+            CodePart code = transform.GetChild(i).gameObject.GetComponent<CodePart>();
+
+            // reset the original text & step
+            transform.GetChild(i).gameObject.GetComponent<CodePart>().SetTextCodePart(code.GetListPossibilities()[code.GetOriginalStep()]);
+            transform.GetChild(i).gameObject.GetComponent<CodePart>().ResetCurrentStep(code.GetOriginalStep());
         }
     }
 }

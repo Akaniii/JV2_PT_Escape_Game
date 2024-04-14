@@ -46,6 +46,7 @@ public class ButtonCode : StaticElement
 
         //apply modifications
         codePart.SetTextCodePart(listPossibilies[codePart.GetCurrentStep()]);
+        codePart.GetCodesManager().CheckCode();
     }
 }
 

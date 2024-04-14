@@ -10,7 +10,9 @@ public class CodesManager : MonoBehaviour
     [SerializeField]
     private CodePart[] currentCode;
 
-    public void CheckCode()
+    protected bool isComplete;
+
+    public virtual void CheckCode()
     {
         int checkRightCode = 0;
 
@@ -26,6 +28,8 @@ public class CodesManager : MonoBehaviour
         // if all part are corrects, validate
         if (checkRightCode == currentCode.Length)
         {
+            isComplete = true;
+
             VictoryCode();
 
             // disable all buttons

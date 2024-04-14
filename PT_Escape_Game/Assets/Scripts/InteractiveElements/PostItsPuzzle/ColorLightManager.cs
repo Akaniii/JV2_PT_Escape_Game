@@ -12,7 +12,7 @@ public class ColorLightManager : Switch
     private SwitchColor[] switchLights;
 
     [SerializeField]
-    private GameObject strongboxDoor, strongboxHandle;
+    private GameObject strongboxDoor, strongboxHandle, lightUV;
 
     private int currentOrder;
 
