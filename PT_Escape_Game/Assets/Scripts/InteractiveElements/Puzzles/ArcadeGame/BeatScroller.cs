@@ -5,7 +5,10 @@ using UnityEngine;
 public class BeatScroller : MonoBehaviour
 {
     public float beatTempo;
-    public bool hasStarted;
+    public bool isPlaying;
+
+    [SerializeField]
+    private Vector3 startingPosition;
 
     // Start is called before the first frame update
     void Start()
@@ -16,7 +19,7 @@ public class BeatScroller : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!hasStarted)
+        if (!isPlaying)
         {
             // if (Input.anyKeyDown)
             //{
@@ -27,5 +30,9 @@ public class BeatScroller : MonoBehaviour
         {
             transform.position -= new Vector3(0f, beatTempo * Time.deltaTime, 0f);
         }
+    }
+    public void ResetStartingPosition()
+    {
+        transform.position = startingPosition;
     }
 }

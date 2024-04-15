@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class ArcadeGameManager : MonoBehaviour
 {
-
     public AudioSource music;
     public bool startPlaying=false;
     public BeatScroller theBS;
+
     public static ArcadeGameManager instance;
 
     //Start is called before the first frame update
@@ -24,20 +24,10 @@ public class ArcadeGameManager : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.F))
             {
                 startPlaying = true;
-                theBS.hasStarted = true;
+                theBS.isPlaying = true;
 
                 music.Play();
             }
         }
-    }
-
-    public void NoteHit()
-    {
-        Debug.Log("1");
-
-    }
-    public void NoteMissed()
-    {
-        Debug.Log("0");
     }
 }

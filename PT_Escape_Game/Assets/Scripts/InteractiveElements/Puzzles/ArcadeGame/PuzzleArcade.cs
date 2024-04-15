@@ -3,10 +3,24 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
-public class PuzzleArcade : CodesManager
+public class PuzzleArcade : Puzzle
 {
     [SerializeField]
-    private GameObject boxDoor, reward;
+    private GameObject boxDoor, reward, cable;
+
+    [SerializeField]
+    private AudioSource music;
+
+    [SerializeField]
+    private BeatScroller theBS;
+
+    [SerializeField]
+    private int missedNote, maxMissedNote;
+
+    private bool isPowered, arcadeIsPlaying;
+    
+    [SerializeField]
+    private ButtonsArcade[] buttonsArcade;
 
     public override void Interact()
     {
@@ -16,76 +30,66 @@ public class PuzzleArcade : CodesManager
         // if we hold a post it
         if (playerCarriedElement != null && playerCarriedElement.GetName() == "Cable")
         {
-            //// add post it in PostIt List
-            //for (int i = 0; i < postItsList.Length; i++)
-            //{
-            //    if (postItsList[i] == null)
-            //    {
-            //        // take post it from hand of the player
-            //        postItsList[i] = FindObjectOfType<Player>().interactionsScript.GetCarriedElement();
+            FindObjectOfType<Player>().interactionsScript.DestroyCarriedElement();
+            cable.gameObject.SetActive(true);
 
-            //        postItsList[i].transform.parent = transform;
+            isPowered = true;
 
-            //        // put post it on predefined slot on cork board (list of vector)
-            //        postItsList[i].transform.position = SlotsPostIts[i];
-            //        postItsList[i].transform.eulerAngles = Vector3.zero;
-
-            //        // disable collisions detection and Rigidbody for prevent the fall of post it
-            //        postItsList[i].GetComponent<Rigidbody>().isKinematic = true;
-            //        postItsList[i].GetComponent<Collider>().enabled = false;
-
-            //        // disable collisions detection and Rigidbody for prevent the fall of post it
-            //        postItsList[i].SetIsInPuzzle(true);
-            //        postItsList[i].SetCanBePicked(true);
-
-            //        break;
-            //    }
-            //}
-
-            // out the post it from the "Hand" of the player
-            FindObjectOfType<Player>().interactionsScript.GetCarriedElement().transform.parent = null;
-            FindObjectOfType<Player>().interactionsScript.SetCarriedElement(null);
+            for (int i = 0; i < buttonsArcade.Length; i++)
+            {
+                buttonsArcade[i].gameObject.SetActive(true);
+            }
         }
-        //else
-        //{
-        //    EnterFocusMode();
+        else if (isPowered && !isComplete) 
+        {
+            EnterFocusMode();
 
-        //    reable each post It for Interactions
-        //    for (int i = 0; i < postItsList.Length; i++)
-        //        {
-        //            if (postItsList[i] != null)
-        //            {
-        //                postItsList[i].GetComponent<Collider>().enabled = true;
-        //            }
-        //        }
-        //}
+            arcadeIsPlaying = true;
+            theBS.isPlaying = true;
+            music.Play();
 
-        //if (!isComplete)
-        //{
-        //    EnterFocusMode();
-        //    for (int i = 0; i < currentCode.Length; i++)
-        //    {
-        //        currentCode[i].RenableButtons();
-        //    }
-        //}
+            theBS.ResetStartingPosition();
+        }
     }
-
     public override void QuitFocusMode()
     {
         base.QuitFocusMode();
-
-        for (int i = 0; i < currentCode.Length; i++)
-        {
-            currentCode[i].DisableButtons();
-        }
+        arcadeIsPlaying = false;
+        theBS.isPlaying = false;
+        music.Stop();
     }
 
-    public override void VictoryCode()
+    public bool GetIsPowered()
+    {
+        return isPowered;
+    }
+
+    public bool GetArcadeIsPlaying()
+    {
+        return arcadeIsPlaying;
+    }
+
+    public void VictoryArcade()
     {
         isComplete = true;
-        QuitFocusMode();
-
         boxDoor.GetComponent<Animator>().SetTrigger("OpenTop");
-        reward.GetComponent<MovableElement>().SetCanBePicked(true);
+        reward.GetComponent<SwitchColor>().GetComponent<Collider>().enabled = true;
+
+        QuitFocusMode();
+    }
+
+    public void NoteHit()
+    {
+
+    }
+    public void NoteMissed()
+    {
+        missedNote++;
+
+        if (missedNote > maxMissedNote)
+        {
+            //Game Over Arcade Puzzle
+            QuitFocusMode();
+        }
     }
 }

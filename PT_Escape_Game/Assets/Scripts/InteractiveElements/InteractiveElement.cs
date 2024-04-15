@@ -11,6 +11,14 @@ public abstract class InteractiveElement : MonoBehaviour
     [SerializeField]
     private string nameElement, action, errorText;
 
+    [SerializeField]
+    private AudioSource soundEffect;
+
+    public void PlaySoundEffect()
+    {
+        soundEffect.Play();
+    }
+
     public string GetName()
     {
         return nameElement;

@@ -4,33 +4,43 @@ using UnityEngine;
 
 public class NoteObject : MonoBehaviour
 {
-    public bool CanBepressed = false;
-    public KeyCode keyToPress;
-    // Start is called before the first frame update
-    void Start()
-    {
+    private bool CanBepressed = false;
+    [SerializeField]
+    private KeyCode keyToPress;
 
-    }
+    [SerializeField]
+    private bool isLastOne;
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(keyToPress))
+        if (FindObjectOfType<PuzzleArcade>().GetArcadeIsPlaying())
         {
-            if (CanBepressed)
+            if (Input.GetKeyDown(keyToPress))
             {
-                gameObject.SetActive(false);
-                ArcadeGameManager.instance.NoteHit();
+                if (CanBepressed)
+                {
+                    gameObject.SetActive(false);
+                    FindObjectOfType<PuzzleArcade>().NoteHit();
+                }
             }
         }
     }
 
-    
     private void OnTriggerEnter(Collider other)
     {
         if (other.tag == "Activator")
         {
             CanBepressed = true;
+        }
+        if (other.tag == "Disappear")
+        {
+            gameObject.GetComponent<SpriteRenderer>().enabled = false;
+
+            if (isLastOne)
+            {
+                FindObjectOfType<PuzzleArcade>().VictoryArcade();
+            }
         }
     }
 
@@ -39,7 +49,12 @@ public class NoteObject : MonoBehaviour
         if (other.tag == "Activator" && gameObject.activeSelf)
         {
             CanBepressed = false;
-            ArcadeGameManager.instance.NoteMissed();
+            FindObjectOfType<PuzzleArcade>().NoteMissed();
+        }
+
+        if (other.tag == "Appear")
+        {
+            gameObject.GetComponent<SpriteRenderer>().enabled = true;
         }
     }
 }
