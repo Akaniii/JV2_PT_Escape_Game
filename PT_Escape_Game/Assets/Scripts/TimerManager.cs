@@ -58,12 +58,12 @@ public class TimerManager : MonoBehaviour
         else if (timerGame >= maxTimer && !gameOver && !finalVictory)
         {
             StartCoroutine(GameOver());
-            gameOver = true;
         }
     }
 
     public IEnumerator GameOver()
     {
+        gameOver = true;
         FindObjectOfType<Player>().SetCanMove(false);
         blackScreen.GetComponent<Animator>().SetTrigger("GameOver");
         music.Stop();

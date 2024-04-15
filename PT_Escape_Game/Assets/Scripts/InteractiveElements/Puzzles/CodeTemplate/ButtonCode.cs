@@ -15,6 +15,8 @@ public class ButtonCode : StaticElement
         int currentCode = codePart.GetCurrentStep();
         string [] listPossibilies = codePart.GetListPossibilities();
 
+        PlaySoundEffect();
+
         if (typeAction == TypeAction.Increase)
         {
             // if currentCode is at the max, reset to 0
