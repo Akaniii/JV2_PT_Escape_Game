@@ -103,6 +103,9 @@ public class BathroomManager : CodesManager
     {
         isComplete = true;
         QuitFocusMode();
+
+        boxDoor.GetComponent<Animator>().SetTrigger("OpenTop");
+        reward.GetComponent<MovableElement>().SetCanBePicked(true);
     }
 
     public IEnumerator MakeTextAppearLerp(TextMeshPro text)

@@ -20,7 +20,7 @@ public class MovableElement : InteractiveElement
             transform.parent = FindObjectOfType<Player>().interactionsScript.GetHandPosition().transform;
             FindObjectOfType<Player>().interactionsScript.SetCarriedElement(this);
             transform.localPosition = Vector3.zero;
-            transform.localEulerAngles = Vector3.zero; 
+            transform.localEulerAngles = new Vector3(0, 90, 0);
 
             gameObject.GetComponent<Rigidbody>().isKinematic = true;
             gameObject.GetComponent<Collider>().enabled = false;

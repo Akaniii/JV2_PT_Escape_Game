@@ -37,7 +37,6 @@ public class PuzzleHall : CodesManager
         QuitFocusMode();
 
         boxDoor.GetComponent<Animator>().SetTrigger("OpenTop");
-        // ouverture de la porte
         reward.GetComponent<MovableElement>().SetCanBePicked(true);
     }
 }
