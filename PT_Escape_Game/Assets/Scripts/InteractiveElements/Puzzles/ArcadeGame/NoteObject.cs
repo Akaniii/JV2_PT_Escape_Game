@@ -20,7 +20,7 @@ public class NoteObject : MonoBehaviour
             if (CanBepressed)
             {
                 gameObject.SetActive(false);
-                GameManager1.instance.NoteHit();
+                ArcadeGameManager.instance.NoteHit();
             }
         }
     }
@@ -39,7 +39,7 @@ public class NoteObject : MonoBehaviour
         if (other.tag == "Activator" && gameObject.activeSelf)
         {
             CanBepressed = false;
-            GameManager1.instance.NoteMissed();
+            ArcadeGameManager.instance.NoteMissed();
         }
     }
 }
