@@ -73,4 +73,21 @@ public class Player : MonoBehaviour
         mainCamera.transform.localPosition = newPosition;
         mainCamera.transform.localEulerAngles = newRotation;
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.tag == "EndGame")
+        {
+            StartCoroutine(EndGame());
+        }
+    }
+
+    private IEnumerator EndGame()
+    {
+        FindObjectOfType<TimerManager>().SetFinalVictory(true);
+
+        yield return new WaitForSeconds(3);
+
+        StartCoroutine(FindObjectOfType<TimerManager>().GameOver());
+    }
 }

@@ -134,7 +134,7 @@ public class ColorLightManager : Switch
     public void ManageUVTextPostIts()
     {
         // if normal light is disabled, and UV light enabled
-        if (lightUV.GetLight().activeSelf && !linkedLight.activeSelf)
+        if (lightUV.GetLight().activeSelf)
         {
             for (int i = 0; i < postsItTextsUV.Length; i++)
             {

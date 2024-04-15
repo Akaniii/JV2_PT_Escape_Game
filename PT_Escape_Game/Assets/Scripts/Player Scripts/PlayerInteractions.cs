@@ -88,7 +88,7 @@ public class PlayerInteractions : MonoBehaviour
 
         else if (_hitInfo.collider.GetComponent<BathroomManager>() != null)
         {
-            if (!_hitInfo.collider.GetComponent<BathroomManager>().GetIsReseting())
+            if (!_hitInfo.collider.GetComponent<BathroomManager>().GetIsReseting() && !_hitInfo.collider.GetComponent<BathroomManager>().GetIsComplete())
             {
                 return true;
             }
@@ -118,6 +118,7 @@ public class PlayerInteractions : MonoBehaviour
             }
             else
             {
+                Debug.Log("Coucou");
                 return false;
             }
         }

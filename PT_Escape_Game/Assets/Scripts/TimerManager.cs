@@ -96,4 +96,13 @@ public class TimerManager : MonoBehaviour
             }
         }
     }
+
+    public void SetFinalVictory(bool newBool)
+    {
+        finalVictory = newBool;
+    }
+    public bool GetFinalVictory()
+    {
+        return finalVictory;
+    }
 }
