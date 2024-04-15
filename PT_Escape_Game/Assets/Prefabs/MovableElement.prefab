@@ -101,6 +101,7 @@ MonoBehaviour:
   nameElement: Sphere
   action: Pick
   errorText: You already hold something.
+  soundEffect: {fileID: 0}
   canBePicked: 1
   specificity: 0
 --- !u!54 &1464502886948498990

@@ -19,6 +19,8 @@ public class Switch : StaticElement
     public override void Interact()
     {
         animatorSwitch.SetTrigger("PressButton");
+        PlaySoundEffect();
+
         if (!linkedLight.activeSelf)
         {
             TurnOn();

@@ -14,6 +14,7 @@ public class Door : StaticElement
 
     public override void Interact()
     {
+        PlaySoundEffect();
         opened = true;
         animatorDoor.SetTrigger("InteractionOpen");
         FindObjectOfType<Player>().interactionsScript.DestroyCarriedElement();

@@ -14,9 +14,11 @@ public class SwitchColor : Switch
 
     public override void Interact()
     {
+        PlaySoundEffect();
+        animatorSwitch.SetTrigger("PressButton");
+
         if (linkedLight.activeSelf && !colorLightFixed)
         {
-            animatorSwitch.SetTrigger("PressButton");
             if (FindAnyObjectByType<ColorLightManager>().CheckRightLight(this))
             {
                 FixOn();

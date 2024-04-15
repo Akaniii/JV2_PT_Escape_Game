@@ -39,6 +39,8 @@ public class PuzzleArcade : Puzzle
             {
                 buttonsArcade[i].gameObject.SetActive(true);
             }
+
+            PlaySoundEffect();
         }
         else if (isPowered && !isComplete) 
         {

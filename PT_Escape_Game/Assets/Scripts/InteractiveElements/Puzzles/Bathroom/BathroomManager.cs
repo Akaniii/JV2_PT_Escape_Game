@@ -101,6 +101,8 @@ public class BathroomManager : CodesManager
 
     public override void VictoryCode()
     {
+        PlaySoundEffect();
+
         isComplete = true;
         QuitFocusMode();
 

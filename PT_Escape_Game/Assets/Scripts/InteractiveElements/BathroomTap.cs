@@ -19,7 +19,9 @@ public class BathroomTap : StaticElement
     public override void Interact()
     {
         FindObjectOfType<BathroomManager>().IncreaseHotnessLevel();
-        
+
+        PlaySoundEffect();
+
         if (rightOrLeft == "left")
         {
             animatorTap.SetTrigger("RotateTap");

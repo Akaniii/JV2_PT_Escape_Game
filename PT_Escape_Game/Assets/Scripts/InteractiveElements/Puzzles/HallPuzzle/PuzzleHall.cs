@@ -33,6 +33,8 @@ public class PuzzleHall : CodesManager
 
     public override void VictoryCode()
     {
+        PlaySoundEffect();
+
         isComplete = true;
         QuitFocusMode();
 
