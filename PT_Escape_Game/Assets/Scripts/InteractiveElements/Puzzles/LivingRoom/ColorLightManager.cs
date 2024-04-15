@@ -20,6 +20,9 @@ public class ColorLightManager : Switch
     [SerializeField]
     private TextMeshPro[] postsItTextsUV;
 
+    [SerializeField]
+    private AudioSource wrongBuzzer, openStrongholdSound;
+
     private int currentOrder;
 
     public override void Interact()
@@ -82,6 +85,8 @@ public class ColorLightManager : Switch
                 timerLightSystem -= .15f;
             }
 
+            wrongBuzzer.Play();
+
             DisableAllLights();
         }
     }
@@ -103,6 +108,7 @@ public class ColorLightManager : Switch
         }
         else
         {
+            wrongBuzzer.Play();
             DisableAllLights();
             return false;
         }
@@ -147,11 +153,12 @@ public class ColorLightManager : Switch
 
     public IEnumerator Openstrongbox()
     {
-
         strongboxHandle.GetComponent<Animator>().SetTrigger("RotateHandle");
         // rotation de la manivelle
 
         yield return new WaitForSeconds(1.5f);
+
+        openStrongholdSound.Play();
 
         strongboxDoor.GetComponent<Animator>().SetTrigger("RotateDoor");
         // ouverture de la porte

@@ -25,6 +25,9 @@ public class BathroomManager : CodesManager
     [SerializeField]
     private GameObject boxDoor, reward;
 
+    [SerializeField]
+    private AudioSource wrongBuzzer;
+
     private bool isReseting;
 
     public override void Interact()
@@ -128,6 +131,8 @@ public class BathroomManager : CodesManager
     public IEnumerator ErrorCode()
     {
         isReseting = true;
+
+        wrongBuzzer.Play();
 
         for (int i = 0; i < currentCode.Length; i++)
         {

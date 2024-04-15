@@ -1,5 +1,9 @@
 fileFormatVersion: 2
-guid: b4df431957db3744b949dc9bdac4314c
+<<<<<<<< HEAD:PT_Escape_Game/Assets/Sound/SoundEffect/Countdown Clock - Bombe Timer SOUND 1.mp3.meta
+guid: 5a318842035513b4b947066aa9c6424a
+========
+guid: 2f17b3337b2e6da4791acbcd0b6e98ab
+>>>>>>>> rebirth2:PT_Escape_Game/Assets/Sound/Music/Metal Door Open Sound Effect.mp3.meta
 AudioImporter:
   externalObjects: {}
   serializedVersion: 7
