@@ -4,6 +4,8 @@ using System.Security.Cryptography;
 using Unity.VisualScripting;
 using UnityEditor.UIElements;
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class TimerManager : MonoBehaviour
 {
@@ -11,7 +13,7 @@ public class TimerManager : MonoBehaviour
     private float timerGame, maxTimer;
 
     [SerializeField] 
-    private bool finalVictory;
+    private bool finalVictory, gameOver;
 
     [SerializeField]
     private Light [] allLightsList, C4lightsList;
@@ -24,6 +26,12 @@ public class TimerManager : MonoBehaviour
 
     [SerializeField]
     private Color[] previousColor;
+
+    [SerializeField]
+    private AudioSource bombSound, bipSound, music;
+
+    [SerializeField]
+    private Image blackScreen;
 
     private void Start()
     {
@@ -46,6 +54,23 @@ public class TimerManager : MonoBehaviour
                 allLightsList[i].color = Color.Lerp(previousColor[i], newColor, curveLight.Evaluate(timerGame/maxTimer));
             }
         }
+
+        else if (timerGame >= maxTimer && !gameOver && !finalVictory)
+        {
+            StartCoroutine(GameOver());
+            gameOver = true;
+        }
+    }
+
+    public IEnumerator GameOver()
+    {
+        FindObjectOfType<Player>().SetCanMove(false);
+        blackScreen.GetComponent<Animator>().SetTrigger("GameOver");
+        music.Stop();
+        yield return new WaitForSeconds(1f);
+        bombSound.Play();
+        yield return new WaitForSeconds(3f);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
     public IEnumerator TimerElapsesMethod()
@@ -61,6 +86,8 @@ public class TimerManager : MonoBehaviour
             }
 
             yield return new WaitForSeconds(curveBombBlinkLights.Evaluate(timerGame / maxTimer));
+
+            bipSound.Play();
 
             // reable the lights
             for (int i = 0; i < C4lightsList.Length; i++)

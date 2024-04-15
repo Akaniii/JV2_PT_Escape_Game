@@ -24,6 +24,7 @@ public class ColorLightManager : Switch
 
     public override void Interact()
     {
+        PlaySoundEffect();
         animatorSwitch.SetTrigger("PressButton");
 
         if (!linkedLight.activeSelf)
