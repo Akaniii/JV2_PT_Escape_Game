@@ -22,6 +22,9 @@ public class PuzzleArcade : Puzzle
     [SerializeField]
     private ButtonsArcade[] buttonsArcade;
 
+    [SerializeField]
+    private TextMeshPro text;
+
     public override void Interact()
     {
         //save the player carried element
@@ -39,6 +42,7 @@ public class PuzzleArcade : Puzzle
             {
                 buttonsArcade[i].gameObject.SetActive(true);
             }
+            text.gameObject.SetActive(true);
 
             PlaySoundEffect();
         }

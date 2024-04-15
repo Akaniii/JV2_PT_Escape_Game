@@ -98,9 +98,21 @@ public class PlayerInteractions : MonoBehaviour
             }
         }
 
+        else if (_hitInfo.collider.GetComponent<FinalPuzzle>() != null)
+        {
+            if (_hitInfo.collider.GetComponent<FinalPuzzle>().GetDoor().GetOpened())
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
         else if (_hitInfo.collider.GetComponent<Puzzle>() != null)
         {
-            if  (!_hitInfo.collider.GetComponent<Puzzle>().GetIsComplete() && currentPuzzle == null)
+            if (!_hitInfo.collider.GetComponent<Puzzle>().GetIsComplete() && currentPuzzle == null)
             {
                 return true;
             }
@@ -162,11 +174,11 @@ public class PlayerInteractions : MonoBehaviour
         {
             if (Input.GetKey(KeyCode.Q))
             {
-                carriedElement.transform.Rotate(0f, -1f, 0f);
+                carriedElement.transform.Rotate(0f, -3f, 0f);
             }
             else if (Input.GetKey(KeyCode.E))
             {
-                carriedElement.transform.Rotate(0f, 1f, 0f);
+                carriedElement.transform.Rotate(0f, 3f, 0f);
             }
         }
     }

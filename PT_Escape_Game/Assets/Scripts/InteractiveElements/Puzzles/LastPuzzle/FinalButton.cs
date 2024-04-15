@@ -21,6 +21,7 @@ public class FinalButton : StaticElement
         {
             finalDoor.Interact();
             music.Stop();
+            FindObjectOfType<FinalPuzzle>().QuitFocusMode();
         }
 
         else
