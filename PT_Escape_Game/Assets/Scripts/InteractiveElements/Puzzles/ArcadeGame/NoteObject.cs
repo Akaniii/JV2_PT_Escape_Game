@@ -25,8 +25,7 @@ public class NoteObject : MonoBehaviour
         }
     }
 
-    
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.tag == "Activator")
         {
@@ -34,7 +33,7 @@ public class NoteObject : MonoBehaviour
         }
     }
 
-    private void OnTriggerExit(Collider other)
+    private void OnTriggerExit2D(Collider2D other)
     {
         if (other.tag == "Activator" && gameObject.activeSelf)
         {
