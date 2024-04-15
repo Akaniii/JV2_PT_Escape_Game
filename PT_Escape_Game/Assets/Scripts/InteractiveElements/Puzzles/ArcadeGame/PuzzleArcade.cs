@@ -47,8 +47,6 @@ public class PuzzleArcade : Puzzle
             arcadeIsPlaying = true;
             theBS.isPlaying = true;
             music.Play();
-
-            theBS.ResetStartingPosition();
         }
     }
     public override void QuitFocusMode()
@@ -57,6 +55,13 @@ public class PuzzleArcade : Puzzle
         arcadeIsPlaying = false;
         theBS.isPlaying = false;
         music.Stop();
+
+        theBS.ResetStartingPosition();
+
+        for(int i = 0; i < theBS.transform.childCount; i++)
+        {
+            theBS.transform.GetChild(i).GetComponent<SpriteRenderer>().enabled = false;
+        }
     }
 
     public bool GetIsPowered()
@@ -73,7 +78,7 @@ public class PuzzleArcade : Puzzle
     {
         isComplete = true;
         boxDoor.GetComponent<Animator>().SetTrigger("OpenTop");
-        reward.GetComponent<SwitchColor>().GetComponent<Collider>().enabled = true;
+        reward.SetActive(true);
 
         QuitFocusMode();
     }

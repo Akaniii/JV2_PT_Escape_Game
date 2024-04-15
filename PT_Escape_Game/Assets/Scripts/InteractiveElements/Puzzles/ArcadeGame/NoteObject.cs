@@ -22,6 +22,11 @@ public class NoteObject : MonoBehaviour
                 {
                     gameObject.SetActive(false);
                     FindObjectOfType<PuzzleArcade>().NoteHit();
+
+                    if (isLastOne)
+                    {
+                        FindObjectOfType<PuzzleArcade>().VictoryArcade();
+                    }
                 }
             }
         }
@@ -52,7 +57,7 @@ public class NoteObject : MonoBehaviour
             FindObjectOfType<PuzzleArcade>().NoteMissed();
         }
 
-        if (other.tag == "Appear")
+        if (other.tag == "Appear" && FindObjectOfType<PuzzleArcade>().GetArcadeIsPlaying())
         {
             gameObject.GetComponent<SpriteRenderer>().enabled = true;
         }

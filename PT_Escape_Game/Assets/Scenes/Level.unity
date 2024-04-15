@@ -3834,6 +3834,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Switch Green
       objectReference: {fileID: 0}
+    - target: {fileID: 1898310635609377388, guid: fab4fcf4856a3244ebe03b7d63da3bc6, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2080027355161986181, guid: fab4fcf4856a3244ebe03b7d63da3bc6, type: 3}
       propertyPath: lightMesh
       value: 
@@ -3860,7 +3864,7 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: 375249efaa0c2b14bad529aaad522194, type: 2}
     - target: {fileID: 3586811351844897071, guid: fab4fcf4856a3244ebe03b7d63da3bc6, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8537903644959269032, guid: fab4fcf4856a3244ebe03b7d63da3bc6, type: 3}
       propertyPath: m_LocalScale.x
@@ -4739,6 +4743,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 903957359}
     m_Modifications:
+    - target: {fileID: 504913899340809713, guid: c0a9a5c5ea391184892127dc650694fa, type: 3}
+      propertyPath: action
+      value: Open
+      objectReference: {fileID: 0}
+    - target: {fileID: 504913899340809713, guid: c0a9a5c5ea391184892127dc650694fa, type: 3}
+      propertyPath: errorText
+      value: This stronghold seems locked.
+      objectReference: {fileID: 0}
+    - target: {fileID: 504913899340809713, guid: c0a9a5c5ea391184892127dc650694fa, type: 3}
+      propertyPath: nameElement
+      value: StrongHold
+      objectReference: {fileID: 0}
     - target: {fileID: 707672428562152787, guid: 975b02fad027b6c458f85f4c1f543b6d, type: 3}
       propertyPath: m_Size.x
       value: 0.5331169
@@ -4815,18 +4831,6 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 6872723458581361103, guid: e0c3a80e24ae8a141829e20379198986, type: 3}
-    - target: {fileID: 504913899340809713, guid: c0a9a5c5ea391184892127dc650694fa, type: 3}
-      propertyPath: action
-      value: Open
-      objectReference: {fileID: 0}
-    - target: {fileID: 504913899340809713, guid: c0a9a5c5ea391184892127dc650694fa, type: 3}
-      propertyPath: errorText
-      value: This stronghold seems locked.
-      objectReference: {fileID: 0}
-    - target: {fileID: 504913899340809713, guid: c0a9a5c5ea391184892127dc650694fa, type: 3}
-      propertyPath: nameElement
-      value: StrongHold
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
@@ -5211,53 +5215,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2398033399582717622, guid: 975b02fad027b6c458f85f4c1f543b6d, type: 3}
   m_PrefabInstance: {fileID: 267386507}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &274917098
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 274917099}
-  - component: {fileID: 274917100}
-  m_Layer: 0
-  m_Name: GameManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &274917099
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 274917098}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -3.1246643, y: -10.472204, z: 4.9687448}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1799824778}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &274917100
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 274917098}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ca84172c4ba4bee49a678e320d60918e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  music: {fileID: 1075802685}
-  startPlaying: 0
-  theBS: {fileID: 1230403079}
 --- !u!1 &285230464
 GameObject:
   m_ObjectHideFlags: 0
@@ -16691,6 +16648,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 46574397}
   - {fileID: 760828859}
   - {fileID: 1505074625}
   - {fileID: 1824794511}
@@ -16714,9 +16672,9 @@ Transform:
   - {fileID: 38178204}
   - {fileID: 1320166709}
   - {fileID: 1779924029}
+  - {fileID: 1799824778}
   - {fileID: 1221427079}
   - {fileID: 1711737942}
-  - {fileID: 46574397}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &906463553
@@ -32928,16 +32886,8 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 1998709265}
+    m_TransformParent: {fileID: 903957359}
     m_Modifications:
-    - target: {fileID: -1148284377500093665, guid: 975b02fad027b6c458f85f4c1f543b6d, type: 3}
-      propertyPath: m_Mesh
-      value: 
-      objectReference: {fileID: 5537914760762738905, guid: eef3cedeeb3263f4d9ccc8a0f6656853, type: 3}
-    - target: {fileID: -1148284377500093665, guid: 975b02fad027b6c458f85f4c1f543b6d, type: 3}
-      propertyPath: m_Convex
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 271993381340489554, guid: a251cc3c8b9e3f940a70c82956282821, type: 3}
       propertyPath: m_Mesh
       value: 
@@ -32960,15 +32910,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5825997820181594519, guid: a251cc3c8b9e3f940a70c82956282821, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -5.792
+      value: 3.6826644
       objectReference: {fileID: 0}
     - target: {fileID: 5825997820181594519, guid: a251cc3c8b9e3f940a70c82956282821, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -4.447
+      value: 10.472204
       objectReference: {fileID: 0}
     - target: {fileID: 5825997820181594519, guid: a251cc3c8b9e3f940a70c82956282821, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -1.837
+      value: -4.750745
       objectReference: {fileID: 0}
     - target: {fileID: 5825997820181594519, guid: a251cc3c8b9e3f940a70c82956282821, type: 3}
       propertyPath: m_LocalRotation.w
@@ -32976,15 +32926,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5825997820181594519, guid: a251cc3c8b9e3f940a70c82956282821, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 5825997820181594519, guid: a251cc3c8b9e3f940a70c82956282821, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 5825997820181594519, guid: a251cc3c8b9e3f940a70c82956282821, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 5825997820181594519, guid: a251cc3c8b9e3f940a70c82956282821, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -33022,9 +32972,18 @@ PrefabInstance:
       propertyPath: m_Center.z
       value: 0.00000037252903
       objectReference: {fileID: 0}
+    - target: {fileID: -1148284377500093665, guid: 975b02fad027b6c458f85f4c1f543b6d, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 5537914760762738905, guid: eef3cedeeb3263f4d9ccc8a0f6656853, type: 3}
+    - target: {fileID: -1148284377500093665, guid: 975b02fad027b6c458f85f4c1f543b6d, type: 3}
+      propertyPath: m_Convex
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 0}
     - {fileID: 129784518154471668, guid: a251cc3c8b9e3f940a70c82956282821, type: 3}
+    - {fileID: 8568175548127863329, guid: a251cc3c8b9e3f940a70c82956282821, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 5825997820181594519, guid: a251cc3c8b9e3f940a70c82956282821, type: 3}
@@ -33041,9 +33000,6 @@ PrefabInstance:
       addedObject: {fileID: 1230403078}
     - targetCorrespondingSourceObject: {fileID: 5825997820181594519, guid: a251cc3c8b9e3f940a70c82956282821, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 274917099}
-    - targetCorrespondingSourceObject: {fileID: 5825997820181594519, guid: a251cc3c8b9e3f940a70c82956282821, type: 3}
-      insertIndex: -1
       addedObject: {fileID: 1573597488}
     - targetCorrespondingSourceObject: {fileID: 5825997820181594519, guid: a251cc3c8b9e3f940a70c82956282821, type: 3}
       insertIndex: -1
@@ -33052,6 +33008,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 359488208513073855, guid: a251cc3c8b9e3f940a70c82956282821, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1799824783}
+    - targetCorrespondingSourceObject: {fileID: 359488208513073855, guid: a251cc3c8b9e3f940a70c82956282821, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1799824787}
   m_SourcePrefab: {fileID: 100100000, guid: a251cc3c8b9e3f940a70c82956282821, type: 3}
 --- !u!4 &1799824778 stripped
 Transform:
@@ -33088,6 +33047,28 @@ MonoBehaviour:
   - {fileID: 849266018}
   - {fileID: 849139139}
   - {fileID: 6881509}
+--- !u!64 &1799824787
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 559129505}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -9010193167645078742, guid: 386c597da80798b488911d35862b5e03, type: 3}
 --- !u!1001 &1800724482
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -36291,7 +36272,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 103704144}
-  - {fileID: 1799824778}
   - {fileID: 289488586}
   - {fileID: 1711814578}
   - {fileID: 78331951}
