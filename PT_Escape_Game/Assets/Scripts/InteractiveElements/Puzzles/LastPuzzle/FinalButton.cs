@@ -19,9 +19,12 @@ public class FinalButton : StaticElement
 
         if (correctButton)
         {
-            finalDoor.Interact();
+            finalDoor.PlaySoundEffect();
+            finalDoor.SetOpened(true);
+            finalDoor.GetAnimator().SetTrigger("InteractionOpen");
             music.Stop();
             FindObjectOfType<FinalPuzzle>().QuitFocusMode();
+            FindObjectOfType<FinalPuzzle>().SetIsComplete(true);
         }
 
         else

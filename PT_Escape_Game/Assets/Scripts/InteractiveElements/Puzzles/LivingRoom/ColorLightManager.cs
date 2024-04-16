@@ -15,7 +15,7 @@ public class ColorLightManager : Switch
     private SwitchUVLight lightUV;
 
     [SerializeField]
-    private GameObject strongboxDoor, strongboxHandle, reward;
+    private GameObject strongboxDoor, strongboxHandle, reward, reward2;
 
     [SerializeField]
     private TextMeshPro[] postsItTextsUV;
@@ -163,5 +163,6 @@ public class ColorLightManager : Switch
         strongboxDoor.GetComponent<Animator>().SetTrigger("RotateDoor");
         // ouverture de la porte
         reward.GetComponent<MovableElement>().SetCanBePicked(true);
+        reward2.GetComponent<MovableElement>().SetCanBePicked(true);
     }
 }

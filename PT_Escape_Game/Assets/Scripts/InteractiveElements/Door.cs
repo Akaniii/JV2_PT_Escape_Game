@@ -44,4 +44,14 @@ public class Door : StaticElement
     {
         return opened;
     }
+
+    public Animator GetAnimator()
+    {
+        return animatorDoor;
+    }
+
+    public void SetOpened(bool newBool)
+    {
+        opened = newBool;
+    }
 }

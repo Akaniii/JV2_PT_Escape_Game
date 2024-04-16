@@ -62,4 +62,9 @@ public class NoteObject : MonoBehaviour
             gameObject.GetComponent<SpriteRenderer>().enabled = true;
         }
     }
+
+    public void SetBePressed(bool b)
+    {
+        CanBepressed = b;
+    }
 }

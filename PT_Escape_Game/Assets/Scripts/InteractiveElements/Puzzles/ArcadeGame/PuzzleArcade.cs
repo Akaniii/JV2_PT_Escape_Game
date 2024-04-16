@@ -9,7 +9,7 @@ public class PuzzleArcade : Puzzle
     private GameObject boxDoor, reward, cable;
 
     [SerializeField]
-    private AudioSource music;
+    private AudioSource musicArcade, music, wrongBuzzer;
 
     [SerializeField]
     private BeatScroller theBS;
@@ -52,7 +52,8 @@ public class PuzzleArcade : Puzzle
 
             arcadeIsPlaying = true;
             theBS.isPlaying = true;
-            music.Play();
+            musicArcade.Play();
+            music.Pause();
         }
     }
     public override void QuitFocusMode()
@@ -60,14 +61,13 @@ public class PuzzleArcade : Puzzle
         base.QuitFocusMode();
         arcadeIsPlaying = false;
         theBS.isPlaying = false;
-        music.Stop();
+       
+        musicArcade.Stop();
+        music.Play();
+
+        missedNote = 0;
 
         theBS.ResetStartingPosition();
-
-        for(int i = 0; i < theBS.transform.childCount; i++)
-        {
-            theBS.transform.GetChild(i).GetComponent<SpriteRenderer>().enabled = false;
-        }
     }
 
     public bool GetIsPowered()
@@ -99,6 +99,7 @@ public class PuzzleArcade : Puzzle
 
         if (missedNote > maxMissedNote)
         {
+            wrongBuzzer.Play();
             //Game Over Arcade Puzzle
             QuitFocusMode();
         }

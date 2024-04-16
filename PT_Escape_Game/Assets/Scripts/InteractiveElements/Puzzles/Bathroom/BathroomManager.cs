@@ -109,8 +109,6 @@ public class BathroomManager : CodesManager
         isComplete = true;
         QuitFocusMode();
 
-        //gameObject.GetComponent<Collider>().enabled = false;
-
         boxDoor.GetComponent<Animator>().SetTrigger("OpenTop");
         reward.GetComponent<MovableElement>().SetCanBePicked(true);
     }

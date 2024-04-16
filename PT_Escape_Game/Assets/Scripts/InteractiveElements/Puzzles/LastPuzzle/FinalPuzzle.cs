@@ -10,9 +10,6 @@ public class FinalPuzzle : Puzzle
     [SerializeField]
     private Door door;
 
-    [SerializeField]
-    private Collider [] collidersPuzzle;
-
     public override void Interact()
     {
         if (door.GetOpened())
@@ -23,10 +20,9 @@ public class FinalPuzzle : Puzzle
                 finalButtons[i].GetComponent<Collider>().enabled = true;
             }
 
-            for (int i = 0; i < collidersPuzzle.Length; i++)
-            {
-                collidersPuzzle[i].enabled = true;
-            }
+            gameObject.GetComponent<Collider>().enabled = false;
+
+            Collider[] colliders = gameObject.GetComponents<Collider>();
         }
     }
 
@@ -34,15 +30,12 @@ public class FinalPuzzle : Puzzle
     {
         base.QuitFocusMode();
 
-        for (int i = 0; i < collidersPuzzle.Length; i++)
-        {
-            collidersPuzzle[i].enabled = false;
-        }
-
         for (int i = 0; i < finalButtons.Length; i++)
         {
             finalButtons[i].GetComponent<Collider>().enabled = false;
         }
+
+        gameObject.GetComponent<Collider>().enabled = true;
     }
 
     public Door GetDoor()

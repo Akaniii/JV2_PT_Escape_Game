@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using Unity.VisualScripting.Antlr3.Runtime.Tree;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 public class Puzzle : StaticElement
@@ -72,5 +71,10 @@ public class Puzzle : StaticElement
     public bool GetIsComplete()
     {
         return isComplete;
+    }
+
+    public void SetIsComplete(bool newIsComplete)
+    {
+        isComplete = newIsComplete;
     }
 }

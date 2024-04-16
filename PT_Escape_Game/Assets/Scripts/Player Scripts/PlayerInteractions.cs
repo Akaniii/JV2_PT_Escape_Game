@@ -100,7 +100,7 @@ public class PlayerInteractions : MonoBehaviour
 
         else if (_hitInfo.collider.GetComponent<FinalPuzzle>() != null)
         {
-            if (_hitInfo.collider.GetComponent<FinalPuzzle>().GetDoor().GetOpened())
+            if (_hitInfo.collider.GetComponent<FinalPuzzle>().GetDoor().GetOpened() && !_hitInfo.collider.GetComponent<FinalPuzzle>().GetIsComplete())
             {
                 return true;
             }
@@ -118,7 +118,6 @@ public class PlayerInteractions : MonoBehaviour
             }
             else
             {
-                Debug.Log("Coucou");
                 return false;
             }
         }
