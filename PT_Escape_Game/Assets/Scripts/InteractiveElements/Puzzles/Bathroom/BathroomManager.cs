@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using Unity.VisualScripting;
-using UnityEditor.Build.Reporting;
 
 public class BathroomManager : CodesManager
 {

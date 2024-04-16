@@ -2,8 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
-using UnityEditor.PackageManager;
-using OpenCover.Framework.Model;
 using System.Linq.Expressions;
 
 public class Player : MonoBehaviour
